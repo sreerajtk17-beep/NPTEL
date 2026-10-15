@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MCQ Timed Test</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--tx:#1d1d1b;--mu:#6b6a63;--bd:#e2e0d8;--ac:#2f5d50;--ok:#2e7d4f;--okb:#e3f3e9;--no:#b3392f;--nob:#f9e4e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161715;--card:#202220;--tx:#ecebe5;--mu:#9a998f;--bd:#33352f;--ac:#7fbfa8;--ok:#6fcf97;--okb:#1d3326;--no:#f08a80;--nob:#3a2220;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161715;--card:#202220;--tx:#ecebe5;--mu:#9a998f;--bd:#33352f;--ac:#7fbfa8;--ok:#6fcf97;--okb:#1d3326;--no:#f08a80;--nob:#3a2220;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+main{max-width:720px;margin:0 auto;padding:0 16px 48px}
+h1{font-size:1.6rem;margin:24px 0 4px}.sub{color:var(--mu);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;text-align:left;color:var(--tx);font:inherit;cursor:pointer}
+.card:hover{border-color:var(--ac)}.card b{display:block;font-size:1.05rem}.card span{color:var(--mu);font-size:.85rem}
+.btn{background:var(--ac);color:var(--bg);border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--bd)}.btn:disabled{opacity:.4;cursor:default}
+.hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tm{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.2rem}.tm.low{color:var(--no)}
+.mu{color:var(--mu);font-size:.9rem}
+.q{font-size:1.15rem;font-weight:600;margin:20px 0 14px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin:8px 0;font:inherit;cursor:pointer}
+.opt:hover{border-color:var(--ac)}.opt.sel{border-color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.no{background:var(--nob);border-color:var(--no)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.pal{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.pal button{width:36px;height:36px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;cursor:pointer}
+.pal button.done{background:var(--ac);color:var(--bg);border-color:var(--ac)}.pal button.cur{outline:2px solid var(--tx)}
+.sb{background:var(--card);border:1px solid var(--ac);border-radius:10px;padding:14px;margin-top:22px}
+.big{font-size:3rem;font-weight:700;margin:8px 0}
+.rv{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin:8px 0}
+.rv small{color:var(--mu)}.g{color:var(--ok)!important}.r{color:var(--no)!important}
+.rv{position:relative}.rv.ok{background:var(--okb);border-color:var(--ok)}.rv.no{background:var(--nob);border-color:var(--no)}.rv.skip{background:color-mix(in srgb,#d99a1e 18%,var(--card));border-color:#d99a1e}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;border-radius:999px;padding:2px 10px;margin-bottom:6px;border:1px solid}.rv .tag{margin-right:8px}
+.tag.ok{color:var(--ok);border-color:var(--ok)}.tag.no{color:var(--no);border-color:var(--no)}.tag.skip{color:#c98a12;border-color:#d99a1e}
+</style></head><body><main id="app"></main>
+<script>
+const D={
+"Logistics & Supply Chain Management":[
+["The bullwhip effect describes:",["Falling transport costs","Demand variability amplifying as you move upstream in the supply chain","Seasonal price changes","Warehouse theft"],1,"Small retail demand changes become large swings at manufacturers and suppliers."],
+["EOQ minimises the sum of:",["Ordering and holding costs","Purchase and transport costs","Shortage and safety costs","Labour and rent"],0,"EOQ balances ordering cost against holding cost."],
+["A 3PL provider is:",["A government agency","A firm that handles logistics services on behalf of a company","A raw material supplier","A retailer"],1,"Third-party logistics outsources transport, warehousing, etc."],
+["Cross-docking means:",["Long-term storage","Moving goods from inbound to outbound transport with minimal storage","Destroying obsolete stock","Customs clearance"],1,"It cuts handling and holding time."],
+["Just-In-Time (JIT) aims to:",["Maximise buffer stock","Receive goods only as needed, reducing inventory","Increase lead time","Buy in bulk discounts"],1,"JIT lowers inventory by synchronising supply with demand."],
+["ABC analysis classifies inventory by:",["Weight","Age","Annual consumption value","Colour code"],2,"A items: high value, few units; C items: low value, many units."],
+["Lead time is the time between:",["Production and sale","Placing an order and receiving it","Receiving and storing","Shipping and invoicing"],1,"It spans order placement to receipt."],
+["Under the Incoterm FOB, the seller's responsibility ends when goods are:",["At the buyer's warehouse","Loaded on board the vessel","Cleared at destination","Insured at origin"],1,"Free On Board: risk passes once goods are on the ship."],
+["Reverse logistics deals with:",["Backward planning","Moving goods from the customer back to the producer (returns, recycling)","Cancelling orders","Reducing routes"],1,"It covers returns, repair, remanufacture and recycling."],
+["Safety stock is held to protect against:",["Taxes","Demand and lead-time variability","Price inflation","Obsolescence only"],1,"It buffers uncertainty to avoid stockouts."]],
+};
+const PS="Psychology of Learning";let SRC=[];
+const R={
+1:[["Learning is often seen as the contiguous causal effect of ___ on behavior.",["blood","bone density","trauma","experience"],3,3],
+["In order to say that learning has occurred, a hidden change in behavior must occur.",["True","False"],1,3],
+["Which of the following is not a mental construct?",["skeleton","knowledge","representations","associations"],0,4],
+["Learning changes the ___ structure of the brain through the process of continuous interactions between the learner and the external environment.",["physical","social","biological","none of the given"],0,4],
+["___ shapes the learning process.",["Only thoughts","Only emotions","Both thoughts and emotions","Neither thoughts nor emotions"],2,7],
+["Watson's work included the famous Little Albert experiment in which he conditioned a small child to ___ a white rat.",["fear","love","hate","play with"],0,7],
+["Behaviorism dominated psychology for much of the early ___ century.",["20th","19th","18th","17th"],0,7],
+["The state of “conscious incompetence” may be valuable ___ of a learning experience.",["at the end","in the middle","2 years after the end","at the start"],3,11],
+["Which of the following is not an outcome of effective e-learning?",["wider range of strategies","more reflective approach","more positive emotions towards learning","more disconnected knowledge"],3,14],
+["Instrumental conditioning is an example of ___ learning.",["sensitization","habituation","associative","meaningful"],2,24]],
+2:[["The three major types of learning described by ___ psychology are classical conditioning, operant conditioning and observational learning.",["cognitive","behavioral","emotional","evolutionary"],1,2],
+["According to the view of Watson, psychology is ___.",["subjective","only descriptive","experimental","about internal mental processes that cannot be measured and observed"],2,3],
+["___ is given by Ivan Pavlov.",["Operant conditioning","Functional conditioning","Classical conditioning","Modern conditioning"],2,5],
+["The process by which organisms learn to respond to certain stimuli but not to others is known as ___.",["stimulus generalization","stimulus appreciation","stimulus discrimination","stimulus differentiation"],2,11],
+["Higher-order conditioning is intrinsically weaker than its first-order counterpart.",["True","False"],0,12],
+["___ is the process of gradually changing the quality of a response.",["Shaping","Modeling","Cueing","Shifting"],0,23],
+["The works of ___ were instrumental in engendering the dramatic shift from behaviorism to cognitive theories.",["Edward C. Tolman","Jean Piaget","German Gestalt","All of the given"],3,39],
+["___ intelligence is the ability to perceive the visual–spatial world accurately and involves sensitivity to color, line, shape, form, space, and the potential for recognizing and manipulating the patterns of spaces.",["Interpersonal","Spatial","Bodily-kinesthetic","Linguistic"],1,48],
+["Sternberg proposed his theory in 1985 as an alternative to the idea of the ___.",["general intelligence factor","multiple intelligences","specific intelligence factor","unconscious intelligence"],0,51],
+["Which of the following is not a kind of product in the structure of intellect model?",["symbolic","classes","systems","implications"],0,79]],
+3:[["The connections between nerves cells are called ___.",["systems","syntaxes","neurons","synapses"],3,2],
+["In order to create a ___, information must be changed into a usable form, which occurs through a process known as encoding.",["past memory","new imagination","new memory","past imagination"],2,3],
+["Calling back the stored information in response to some cue for use in a process or activity is called ___.",["Retrieval","Recall","Recollection","All of the given"],3,3],
+["For many with ___ deficits, reading facial expressions and knowing how to respond are confusing daily challenges.",["memory","intelligence","social cognition","biological cognition"],2,8],
+["The Information Processing View of Learning assumes that there are limits to how much information can be processed at each stage.",["True","False"],0,9],
+["The Information Processing View of Learning assumes that information process is involved in ___.",["forgetting","remembering","perceiving","All of the given"],3,9],
+["The capacity of the sensory register is ___.",["very small","very large","7+/-2 chunks","unlimited"],1,14],
+["Most children do not begin to engage in the process of rehearsal on their own until about age ___.",["seven","two","thirteen","one"],0,16],
+["___ provides an interface between the sub-systems of working memory and the part of long term memory specialized for episodic memory.",["Phonological loop","Visuo-spatial sketchpad","Retrieval buffer","Episodic buffer"],3,27],
+["Memories of specific episodes of one’s life refers to ___.",["declarative memory","experimental episodic memory","autobiographical episodic memory","procedural memory"],2,34]],
+4:[["___ thinking is the ability to create mental representations of objects, places, events, or people in your mind.",["General","Creative","Divergent","Symbolic"],3,3],
+["We compare new information to our ___ of the person, place, or thing, so we know how to categorize the new information mentally.",["protofit","protobite","prototype","none of the given"],2,4],
+["Which of the following is not true?",["Thinking is a higher mental process","Thinking is a sub-vocal talking","Thinking is fulfilling a need or problem solving","Thinking is only done in verbal symbols"],3,6],
+["Mental images are ___.",["Auditory","Visual","Gustatory","All of the given"],3,7],
+["___ organize complex phenomena into simpler, easily understandable, and usable categories and help to solve our problems.",["Concepts","Propositions","Constructs","Components"],0,8],
+["The lowermost level of Bloom’s taxonomy is ___.",["remember","apply","understand","analyze"],0,13],
+["The psychomotor domain of the Bloom’s taxonomy is concerned with ___.",["Biological makeup","Thoughts and beliefs","Feelings and emotions","Skilled behavior"],3,17],
+["Which of the following is an example of meta-cognition skills?",["Ignoring your limits","Self-monitoring","Skimming all important information","All of the given"],1,24],
+["___ critical thinking skill helps you analyze and process information to come to an unbiased conclusion.",["Open-mindedness","Self-regulation","Self-control","Observation"],0,32],
+["The inspiration phase of the creative thinking process refers to the ___ stage.",["Incubation","Insight","Evaluation","Preparation"],3,51]],
+5:[["Which of the following is true about motivation?",["It is a physical impulse","It is an external process","It has a willingness to activate but not channel the attitudes of learners","None of the given"],3,2],
+["The term “motivation” comes from a ___ word.",["Greek","Latin","Hindi","Bengali"],1,4],
+["It is called extrinsic motivation if causal factor is ___.",["curiosity","social pressure","self-satisfaction","needs"],1,5],
+["___ motivation is considered to be more crucial for students as it is associated with deep learning, better performance and self-efficacy.",["Intrinsic","Extrinsic","Introjected regulation","None of the given"],0,7],
+["___ proposed that there are three primary drives that drive human behavior.",["Hull","Watson","Piaget","Gestalt"],0,12],
+["Expectancy Theory of Motivation was developed by ___.",["Vroom","Hull","Murray","None of the given"],0,21],
+["An example of ___ is thinking, “If I work hard I can achieve the targets my boss has set for me”.",["purposeful","valence","instrumentality","expectancy"],3,23],
+["In SMART goals, T stands for ___.",["Temporary","Time-based","Tough","Testing"],1,27],
+["Friendship is a ___ need in Maslow’s hierarchy.",["Love and belonging","Esteem","Physiological","Safety"],0,"31-32"],
+["___ theory differentiates between autonomous motivation and controlled motivation.",["Arousal","Goal-setting","Need hierarchy","Self-determination"],3,37]],
+6:[["According to Daniel Goleman, ___ component of emotional intelligence focuses on how we handle relationships with others.",["self-awareness","motivation","empathy","emotional regulation"],2,2],
+["Emotional intelligence can be considered a type of ___ intelligence.",["academic","genetic","social","external"],2,3],
+["Noticing a difficult emotion and slowing down or resisting any impulsive action that may follow highlights ___ component of emotional intelligence.",["Self-regulation","Motivation","Emotional literacy","Empathy"],0,4],
+["The following are signs of emotional intelligence, except ___.",["strong sense of curiosity","holding onto mistakes","ability to manage emotions in difficult situations","self-confidence"],1,7],
+["Perceiving emotions means ___.",["Ignoring signals","Understanding only what somebody is saying to you","Understanding only somebody’s facial expression","Understanding both verbal and nonverbal signals"],3,11],
+["___ suggests that 10 distinct components provide the scaffolding of emotionally and socially intelligent behaviors.",["Bar-On","Goleman","Salovey","Mayer"],0,15],
+["Which of the following is a facilitator of EQ?",["optimism","happiness","independence","all of the given"],3,18],
+["___ is a strategy for improving one’s self-awareness.",["rejecting feedback","using critical self-talk daily","developing a fixed mindset","pursuing one’s passion"],3,20],
+["Having students create autobiographies is an example of creating opportunities for ___.",["emotional labor","emotional contagion","metacognition","none of the given"],2,23],
+["Which of the following is not true about management of emotions?",["It is essentially a private act","It is directly regulated by others","It is influenced by cultural norms","It is influenced by what society defines as appropriate to feel and express"],1,30]],
+7:[["Which of the following is false about learning according to Gagne’s definition?",["It is a change in human disposition","It persists over a period of time","It is simply ascribable to processes of growth","None of the above"],2,3],
+["Manual or physical skills come under ___ component of Bloom’s taxonomy.",["Cognitive","Affective","Psychomotor","Physical"],2,4],
+["Reflection, learning and education was explored by ___.",["Carl Rogers","John Watson","Benjamin Bloom","John Dewey"],3,5],
+["The principles of ___ refer to how close in time two events must be for a bond to be formed.",["behavior","reinforcement","repetition","contiguity"],3,6],
+["___ gives information to learners about their success or failure concerning the task at hand.",["Cognitive feedback","Emotional feedback","Reinforcement","Physical feedback"],0,7],
+["The ___ orientation to learning has a quality of personal involvement, the whole person in both feeling and cognitive aspects being in the learning event.",["behavioral","cognitive","humanistic","social"],2,8],
+["Learning through play is ___ learning.",["primary","secondary","passive","active"],3,15],
+["People with ___ learning style are prone to sorting their ideas after speaking, rather than thinking ideas through before.",["logical","solitary","visual","auditory"],3,17],
+["Which of the following statements is false?",["Effective instruction is static","Effective instruction is eclectic","Effective instruction is generative","Effective instruction is interactive"],0,22],
+["In ADDIE model, I stand for ___.",["instruction","implementation","integration","induction"],1,33]],
+8:[["The word ‘pedagogy’ has been derived from the ___ word “pedagogue”.",["Latin","Sanskrit","Greek","English"],2,3],
+["Which of the following statements is not true about pedagogy?",["It is a method or way of teaching","It is derived from the Greek word “pedagogue”","It helps a teacher understand how learning should be facilitated.","It harms the quality of teaching and learning."],3,"3-5"],
+["Pedagogy can enhance the student-teacher relationship.",["True","False"],0,3],
+["___ learning is based on the model that knowledge can be created within a population where members actively interact by sharing experiences and take on asymmetry roles.",["integrative","inquiry-based","collaborative","constructivist"],2,6],
+["The Pedagogical Model provides an overview of the learning cycle and breaks it down into ___ domains or phases of instruction.",["five","three","two","seven"],0,9],
+["Which of the following is not a type of inquiry-based approach?",["confrontation","structure","guided","open"],0,10],
+["In experiential learning, students are engaged ___.",["intellectually","soulfully","socially","all of the given"],3,14],
+["___ stage of experiential theory by Kolb focuses on planning.",["concrete experience","abstract conceptualization","reflective observation","active experimentation"],3,21],
+["People with a ___ learning style can often act on “gut feeling” and will rely on others' analysis rather than their own.",["accommodating","converging","diverging","assimilating"],0,25],
+["According to the ___ principle, students learn better from animation and narration than from animation and on-screen text.",["multimedia","modality","coherence","temporal contiguity"],1,45]],
+9:[["E-learning is any form of ___.",["teaching","training","tutoring","all of the given"],3,2],
+["___ is a feature of e-learning.",["difficulty in access","user friendliness","social injustice","closed learning"],1,2],
+["E-learning is a synonym of audio-visual learning, multimedia learning, and distance learning.",["True","False"],1,5],
+["Which of the following is not a type of e-learning?",["text-driven","interactive","simulation","physical"],3,"5-6"],
+["Which of the following is not a benefit of e-learning?",["It can accommodate the need of a housewife","People can revise the learning content as many times as they want","It facilitates in developing and communicating new training policies","None of the given"],3,6],
+["Good learners know ___.",["What they are learning","Why they are learning","How they are learning","All of the given"],3,12],
+["Learners may multitask when engaging in an online course, which could be resulting in ___.",["hyperfocus","better retrieval","shorter attention spans","None of the given"],2,19],
+["___ learning is the crucial determinant of successful e-learning.",["passive","retrospective","social","active"],3,13],
+["The brain can process 36,000 visual cues per ___.",["hour","second","day","year"],0,14],
+["For effective learning, online courses should ___.",["use headings","use complex language","present long pieces of text","use random images"],0,20]],
+10:[["During Covid-19 the world was busy in preparing 1.5 billion learners for the new normal, i.e., ___ learning.",["ineffective","physical","remote","experiential"],2,2],
+["To develop learner readiness for online learning, training sessions on ___ are helpful.",["netiquettes","time management","developing study skills","all of the given"],3,4],
+["The typical picture of a teacher being a dispenser of knowledge to the students has been replaced by that of a ___.",["obstructor","parent","friend","facilitator"],3,6],
+["In 2018, Global Education and Skills Forum noted that the ‘future’ teacher would need 5 skills to thrive in the 21st century. Which of the following is not one of them?",["Strong social skills","Data analysis","External focus","Strictness"],3,6],
+["Participatory education demands ___ so as to build a needs-based approach to teaching.",["creativity","stubbornness","reward","none of the given"],0,8],
+["Students who consider intelligence as a malleable entity tend to focus on their obstacles instead of goals.",["True","False"],1,10],
+["Which of the following is not a principle to enhance student learning?",["What students already know affects their learning","Learning is context-based","Students’ cognitive development and learning is limited by the general stages of development.","The acquisition of knowledge and skills in the long term depends largely on practice."],2,"10-11"],
+["___ feedback to students is important for learning.",["Unclear","Late","Harsh","Explanatory"],3,14],
+["Mastery goals are those that are geared towards the acquisition or improvement of ___.",["Skills","Number of students in a classroom","Teacher feedback","None of the given"],0,15],
+["The vast majority of formative assessment is ___.",["Formal","Incorrect","Written","informal"],3,44]],
+11:[["Social cognition has a protracted development through infancy to ___.",["teenage","old-age","adulthood","death"],2,2],
+["Which of the following abilities comes under social cognition?",["Face processing","Joint attention","Theory of mind","All of the given"],3,3],
+["Under social cognition, abilities involved in affective processing are often called ___.",["hot","cold","white","black"],0,3],
+["Social schemas refer to people's mental representations of social ___.",["values","memories","skills","patterns"],3,5],
+["During the earliest stages of development, children are very ___-centric. They see the world from their own perspective and struggle to think about how other people may view the world.",["selfish","ego","conscious","emotional"],1,6],
+["A theory of mind refers to a person's ability to understand and think about the ___ of other people.",["behaviors","family backgrounds","mental states","language"],2,8],
+["The same social behavior in one cultural setting might have a very different meaning and interpretation if it were to occur or be observed in another culture.",["True","False"],0,9],
+["Social cognitive theory by Bandura focuses on concepts of ___.",["self-efficacy","modeling","observational learning","all of the given"],3,11],
+["The central tenet of Bandura’s social-cognitive theory is that people seek to develop a sense of ___ over the important events in their lives.",["agency","dependency","attachment","emotion"],0,13],
+["___ hypothesis suggests that social processes influence how information is selected, organized, integrated, and retrieved.",["activation","cognitive influence","interaction","social cue strength"],1,30]],
+12:[["Sustainability in economic sustainability is ____.",["multidimensional","bidimensional","unidimensional","none of the given"],2,null],
+["The term “sustainable development” was first mentioned in a book related to the 1972 UN Stockholm conference on ____.",["water","poverty","economic crisis","human environment"],3,null],
+["Environmental sustainability focuses on impacts of processes, products and services on ____.",["water","biodiversity","human health","all of the given"],3,null],
+["Which of the following does not come under social sustainability?",["Labour practices","Revenue generation","Human rights","Business ethics"],1,null],
+["SDG __ focuses on clean water and sanitation.",["1","17","6","3"],2,null],
+["SDG 16 focuses on ____.",["No poverty","No hunger","Good health","Peace and justice"],3,null],
+["On 20 October 2020, the Higher Education Sustainability Initiative (HESI) raised the flag of higher education as a driver for sustainable development and inclusive societies on the first day of the ____ 2020.",["National Sustainability Meeting","National Teachers Meeting","Global Childrens' Meeting","Global Education Meeting"],3,null],
+["Education is related to all SDGs.",["True","False"],0,null],
+["Successful implementation of ESD requires a shift in focus from ____.",["teaching to learning","learning to teaching","reading to speaking","knowing to ignoring"],0,null],
+["Target 4.7 of SDG 4 focuses on ____.",["Environment education","Sustainable development and global citizenship","Primary education","Higher education"],1,null]]};
+const W=Object.fromEntries(Object.entries(R).map(([n,a])=>[n,a.map(([q,o,k,sl])=>[q,o,k,sl?`See lecture notes of week-${n} (slide no.${sl}).`:`Week ${n} assignment answer.`])]));
+const MH="Mental Health and Wellbeing";
+const MHD={
+1:[["Which factor best contributes to overall mental wellbeing?",["Ability to cope with life challenges","Constant happiness","Avoiding all stress","Ignoring emotions"],0,"Wellbeing means managing stress, adapting to difficulties and functioning well despite challenges, not feeling happy all the time."],
+["Which of the following is the correct sequence of stages in the General Adaptation Syndrome?",["Resistance → Alarm → Exhaustion","Alarm → Exhaustion → Resistance","Alarm → Resistance → Exhaustion","Exhaustion → Alarm → Resistance"],2,"Selye: the body reacts (Alarm), tries to adapt (Resistance), and if stress continues without recovery, resources deplete (Exhaustion)."],
+["Which behaviour reflects healthy coping?",["Suppressing feelings","Avoiding problems","Engaging in hobbies","Overthinking situations"],2,"Hobbies, exercise or time with loved ones manage stress constructively, unlike avoidance or suppression."],
+["What is a key characteristic of digital overload?",["Mental exhaustion from excessive information","Improved focus","Reduced device usage","Increased relaxation"],0,"Constant emails, notifications and online information overwhelm the brain, causing cognitive fatigue and stress."],
+["Meher compares herself to influencers and feels inferior. Which theory explains this?",["Operant conditioning","Cognitive dissonance","Social comparison theory","Behavioral theory"],2,"People evaluate themselves by comparing with others; comparing with idealised images lowers self-esteem."],
+["Which of the following is an example of unhealthy social media behavior?",["Learning new skills","Connecting with friends","Watching informative content","Comparing oneself constantly with others"],3,"Constant comparison harms self-esteem, increases anxiety and creates unrealistic expectations."],
+["What is the main purpose of relaxation techniques?",["Increase stress levels","Improve memory only","Reduce physiological and mental tension","Avoid responsibilities"],2,"They activate the body's relaxation response, slowing heart rate, easing muscle tension and lowering stress hormones."],
+["Which practice helps in improving self-awareness?",["Mindful observation of thoughts","Ignoring emotions","Multitasking","Social withdrawal"],0,"Mindfulness means noticing thoughts, emotions and sensations without judgment, which builds self-awareness."],
+["According to Piaget's theory, what is the “imaginary audience”?",["A group of friends who provide feedback on behavior","The belief that others are constantly watching, noticing, and evaluating oneself","The tendency to imitate people seen in the media","The ability to understand another person's perspective"],1,"A feature of adolescent egocentrism: teens believe others are always observing and judging them."]],
+2:[["Peer pressure can best be described as:",["Self-motivation","Family expectations","Personal decision-making","Influence from peers to act in certain ways"],3,"It is influence from peers on thoughts, attitudes or behaviour, and it can be positive or negative."],
+["Assertiveness helps individuals to:",["Please everyone","Express thoughts respectfully","Avoid communication","Dominate others"],1,"It lets people express thoughts and needs clearly and respectfully without being aggressive."],
+["Which factor strongly affects body image in adolescents?",["Media influence","Weather","Food habits only","Sleep cycle"],0,"Unrealistic, edited images in media create pressure to look a certain way and lower self-esteem."],
+["What is the purpose of mindfulness?",["Focus on past mistakes","Worry about future","Stay present in the moment","Avoid emotions"],2,"It focuses attention on the present with openness and without judgment, reducing stress."],
+["Which is a relaxation technique?",["Meditation","Overthinking","Isolation","Procrastination"],0,"Meditation calms the mind and body by focusing attention and letting distracting thoughts pass."],
+["Emotional regulation refers to:",["Suppressing all emotions","Ignoring feelings","Expressing anger freely","Managing emotions effectively"],3,"It means recognising, understanding and managing emotions constructively, not suppressing them."],
+["A student’s peers encourage her to join a study group and maintain a healthier routine. Although she initially feels hesitant, the decision aligns with her personal goals and helps her develop better habits. Which aspect most strongly indicates that this is positive peer pressure?",["She agrees because she does not want to be excluded from the group.","She feels nervous before making the decision.","The influence aligns with her values and contributes to personal growth.","She changes her behaviour primarily to gain approval from her peers."],2,"Positive peer pressure supports one's own values and goals and promotes growth, rather than seeking approval."],
+["Active listening involves:",["Interrupting others","Judging quickly","Paying full attention","Ignoring body language"],2,"Concentrating fully, observing body language and responding thoughtfully builds trust and understanding."],
+["Building self-esteem means:",["Comparing with others","Accepting oneself","Seeking validation only","Avoiding challenges"],1,"It involves accepting both strengths and limitations without relying on comparison or external praise."],
+["Why can body image concerns feel more intense during adolescence?",["Adolescents experience very few emotional changes.","Heightened emotional volatility can amplify concerns about appearance and self-worth.","Adolescents do not care about their appearance.","Mood swings reduce concerns about self-worth."],1,"Rapid hormonal and emotional changes plus a need for acceptance make adolescents more sensitive to appearance."]]};
+const WMH=Object.fromEntries([1,2,3,4,5,6,7,8,9,10,11,12].map(n=>[n,MHD[n]||[]]));
+const WK={[PS]:W,[MH]:WMH};let CS=PS;
+const app=document.getElementById('app'),TOTAL=180*60;
+let Q,ans,cur,end,iv,sub,name,taken,lv=false;
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=s=>{s=Math.max(0,s);const h=s/3600|0,m=(s%3600)/60|0,x=s%60;return `${h}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}`};
+function picker(sn){
+ CS=sn;const WW=WK[sn];
+ app.innerHTML=`<h1>${sn}</h1><p class="sub">Select the weeks to include. Questions from the chosen weeks are mixed and shuffled. 180 minutes.</p><div class="grid">`+Object.keys(WW).map(n=>`<label class="card"><input type="checkbox" value="${n}" ${WW[n].length?'':'disabled'}> <b style="display:inline">Week ${n}</b><br><span>${WW[n].length?`${WW[n].length} question${WW[n].length>1?'s':''}`:'Coming soon'}</span></label>`).join('')+`</div><div class="row"><button class="btn ghost" id="a">Select all</button><button class="btn ghost" id="c">Clear</button><button class="btn ghost" id="b">Back</button><button class="btn" id="g" disabled>Start test</button></div><p class="mu" id="m"></p>`;
+ const cb=[...app.querySelectorAll('input')],g=document.getElementById('g');
+ const up=()=>{const k=cb.filter(x=>x.checked);g.disabled=!k.length;document.getElementById('m').textContent=k.length?`${k.length} week(s) · ${k.reduce((t,x)=>t+WW[x.value].length,0)} questions selected`:''};
+ cb.forEach(x=>x.onchange=up);
+ document.getElementById('a').onclick=()=>{cb.forEach(x=>x.checked=!x.disabled);up()};
+ document.getElementById('c').onclick=()=>{cb.forEach(x=>x.checked=false);up()};
+ document.getElementById('b').onclick=home;
+ g.onclick=()=>{const k=cb.filter(x=>x.checked).map(x=>x.value);SRC=k.flatMap(n=>WW[n]);start(`${sn} (Week ${k.join(', ')})`)};
+}
+function home(){
+ clearInterval(iv);
+ app.innerHTML=`<h1>MCQ Timed Test</h1><p class="sub">Choose a subject. You get 180 minutes. Question order is shuffled every time, and you can submit any time.</p><div class="grid">`+
+ Object.keys(D).map(k=>`<button class="card" data-s="${k}"><b>${k}</b><span>${D[k].length} questions · 180 min</span></button>`).join('')+`<button class="card" data-s="${PS}"><b>${PS}</b><span>12 weeks · pick any weeks · 180 min</span></button><button class="card" data-s="${MH}"><b>${MH}</b><span>12 weeks · pick any weeks · 180 min</span></button></div>`;
+ app.querySelectorAll('.card').forEach(b=>b.onclick=()=>WK[b.dataset.s]?picker(b.dataset.s):start(b.dataset.s));
+}
+function start(s){
+ name=s;
+ Q=sh(D[s]||SRC).map(([q,o,a,e])=>{const m=sh(o.map((t,i)=>[t,i]));return{q,o:m.map(x=>x[0]),a:m.findIndex(x=>x[1]===a),e}});
+ ans=Q.map(()=>null);cur=0;sub=false;end=Date.now()+TOTAL*1000;
+ clearInterval(iv);iv=setInterval(tick,500);render();
+}
+function left(){return Math.round((end-Date.now())/1000)}
+function tick(){
+ const l=left(),t=document.getElementById('t');
+ if(l<=0){submit();return}
+ if(t){t.textContent=fmt(l);t.classList.toggle('low',l<300)}
+}
+function render(){
+ const q=Q[cur],all=ans.every(x=>x!==null),n=ans.filter(x=>x!==null).length;
+ app.innerHTML=`<div class="hd"><div><button class="btn ghost" id="bk" style="padding:4px 12px;margin-bottom:6px">← Back</button><div><b>${name}</b></div><div class="mu">${n} of ${Q.length} answered</div></div><div class="tm" id="t">${fmt(left())}</div></div>${lv?`<div class="sb"><b>Leave this test?</b><div class="mu">Your answers so far will be lost and the timer will stop.</div><div class="row"><button class="btn" id="ly">Leave</button><button class="btn ghost" id="ls">Stay</button></div></div>`:''}
+ <div class="mu" style="margin-top:16px">Question ${cur+1} of ${Q.length}</div><div class="q">${q.q}</div>`+
+ q.o.map((t,k)=>`<button class="opt${ans[cur]===k?' sel':''}" data-k="${k}">${'ABCD'[k]}. ${t}</button>`).join('')+
+ `<div class="row"><button class="btn ghost" id="p" ${cur===0?'disabled':''}>Previous</button><button class="btn ghost" id="n" ${cur===Q.length-1?'disabled':''}>Next</button></div>
+ <div class="pal">${Q.map((_,i)=>`<button data-i="${i}" class="${ans[i]!==null?'done':''}${i===cur?' cur':''}">${i+1}</button>`).join('')}</div>`+
+ `<div class="sb"><b>${all?'All questions answered.':`${Q.length-n} unanswered.`}</b><div class="mu">You can still change answers before submitting.</div><div class="row"><button class="btn" id="s">Submit test</button></div></div>`;
+ app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[cur]=+b.dataset.k;render()});
+ app.querySelectorAll('.pal button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;render()});
+ document.getElementById('p').onclick=()=>{cur--;render()};
+ document.getElementById('n').onclick=()=>{cur++;render()};
+ const s=document.getElementById('s');if(s)s.onclick=()=>submit();
+ document.getElementById('bk').onclick=()=>{lv=true;render()};
+ const ly=document.getElementById('ly');if(ly){ly.onclick=()=>{clearInterval(iv);lv=false;D[name]?home():picker(CS)};document.getElementById('ls').onclick=()=>{lv=false;render()}}
+}
+function submit(){
+ if(sub)return;sub=true;clearInterval(iv);taken=TOTAL-Math.max(0,left());
+ const sc=Q.filter((q,i)=>ans[i]===q.a).length,p=Math.round(sc/Q.length*100),skipped=ans.filter(x=>x===null).length;
+ app.innerHTML=`<h1>Results</h1><div class="mu">${name}</div><div class="big">${sc} / ${Q.length}</div>
+ <p class="sub">${p}% · Time used ${fmt(taken)}</p><div class="row" style="margin:0 0 12px"><span class="tag ok">${sc} Correct</span><span class="tag no">${Q.length-sc-skipped} Wrong</span><span class="tag skip">${skipped} Not attempted</span></div>
+ <div class="row"><button class="btn" id="r">Retake (new order)</button><button class="btn ghost" id="h">All subjects</button></div>
+ <h2 style="margin-top:28px;font-size:1.1rem">Review</h2>`+
+ Q.map((q,i)=>{const a=ans[i],ok=a===q.a,st=a===null?'skip':ok?'ok':'no',lb={skip:'Not attempted',ok:'Correct',no:'Wrong'}[st];return `<div class="rv ${st}"><span class="tag ${st}">${lb}</span><b>${i+1}. ${q.q}</b><br><small>Your answer: ${a===null?'Not answered':q.o[a]}</small>${ok?'':`<br><small class="g">Correct: ${q.o[q.a]}</small>`}<br><small>${q.e}</small></div>`}).join('');
+ document.getElementById('r').onclick=()=>start(name);document.getElementById('h').onclick=home;
+ window.scrollTo(0,0);
+}
+home();
+</script></body></html>
