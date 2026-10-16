@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MCQ Timed Test</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--tx:#1d1d1b;--mu:#6b6a63;--bd:#e2e0d8;--ac:#2f5d50;--ok:#2e7d4f;--okb:#e3f3e9;--no:#b3392f;--nob:#f9e4e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161715;--card:#202220;--tx:#ecebe5;--mu:#9a998f;--bd:#33352f;--ac:#7fbfa8;--ok:#6fcf97;--okb:#1d3326;--no:#f08a80;--nob:#3a2220;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161715;--card:#202220;--tx:#ecebe5;--mu:#9a998f;--bd:#33352f;--ac:#7fbfa8;--ok:#6fcf97;--okb:#1d3326;--no:#f08a80;--nob:#3a2220;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+main{max-width:720px;margin:0 auto;padding:0 16px 48px}
+h1{font-size:1.6rem;margin:24px 0 4px}.sub{color:var(--mu);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;text-align:left;color:var(--tx);font:inherit;cursor:pointer}
+.card:hover{border-color:var(--ac)}.card b{display:block;font-size:1.05rem}.card span{color:var(--mu);font-size:.85rem}
+.btn{background:var(--ac);color:var(--bg);border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--bd)}.btn:disabled{opacity:.4;cursor:default}
+.hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tm{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.2rem}.tm.low{color:var(--no)}
+.mu{color:var(--mu);font-size:.9rem}
+.q{font-size:1.15rem;font-weight:600;margin:20px 0 14px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin:8px 0;font:inherit;cursor:pointer}
+.opt:hover{border-color:var(--ac)}.opt.sel{border-color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.no{background:var(--nob);border-color:var(--no)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.pal{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.pal button{width:36px;height:36px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;cursor:pointer}
+.pal button.done{background:var(--ac);color:var(--bg);border-color:var(--ac)}.pal button.cur{outline:2px solid var(--tx)}
+.sb{background:var(--card);border:1px solid var(--ac);border-radius:10px;padding:14px;margin-top:22px}
+.big{font-size:3rem;font-weight:700;margin:8px 0}
+.rv{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin:8px 0}
+.rv small{color:var(--mu)}.g{color:var(--ok)!important}.r{color:var(--no)!important}
+.rv{position:relative}.rv.ok{background:var(--okb);border-color:var(--ok)}.rv.no{background:var(--nob);border-color:var(--no)}.rv.skip{background:color-mix(in srgb,#d99a1e 18%,var(--card));border-color:#d99a1e}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;border-radius:999px;padding:2px 10px;margin-bottom:6px;border:1px solid}.rv .tag{margin-right:8px}
+.tag.ok{color:var(--ok);border-color:var(--ok)}.tag.no{color:var(--no);border-color:var(--no)}.tag.skip{color:#c98a12;border-color:#d99a1e}
+</style></head><body><main id="app"></main>
+<script>
+const D={};
+const PS="Psychology of Learning";let SRC=[];
+const R={
+1:[["Learning is often seen as the contiguous causal effect of ___ on behavior.",["blood","bone density","trauma","experience"],3,3],
+["In order to say that learning has occurred, a hidden change in behavior must occur.",["True","False"],1,3],
+["Which of the following is not a mental construct?",["skeleton","knowledge","representations","associations"],0,4],
+["Learning changes the ___ structure of the brain through the process of continuous interactions between the learner and the external environment.",["physical","social","biological","none of the given"],0,4],
+["___ shapes the learning process.",["Only thoughts","Only emotions","Both thoughts and emotions","Neither thoughts nor emotions"],2,7],
+["Watson's work included the famous Little Albert experiment in which he conditioned a small child to ___ a white rat.",["fear","love","hate","play with"],0,7],
+["Behaviorism dominated psychology for much of the early ___ century.",["20th","19th","18th","17th"],0,7],
+["The state of “conscious incompetence” may be valuable ___ of a learning experience.",["at the end","in the middle","2 years after the end","at the start"],3,11],
+["Which of the following is not an outcome of effective e-learning?",["wider range of strategies","more reflective approach","more positive emotions towards learning","more disconnected knowledge"],3,14],
+["Instrumental conditioning is an example of ___ learning.",["sensitization","habituation","associative","meaningful"],2,24]],
+2:[["The three major types of learning described by ___ psychology are classical conditioning, operant conditioning and observational learning.",["cognitive","behavioral","emotional","evolutionary"],1,2],
+["According to the view of Watson, psychology is ___.",["subjective","only descriptive","experimental","about internal mental processes that cannot be measured and observed"],2,3],
+["___ is given by Ivan Pavlov.",["Operant conditioning","Functional conditioning","Classical conditioning","Modern conditioning"],2,5],
+["The process by which organisms learn to respond to certain stimuli but not to others is known as ___.",["stimulus generalization","stimulus appreciation","stimulus discrimination","stimulus differentiation"],2,11],
+["Higher-order conditioning is intrinsically weaker than its first-order counterpart.",["True","False"],0,12],
+["___ is the process of gradually changing the quality of a response.",["Shaping","Modeling","Cueing","Shifting"],0,23],
+["The works of ___ were instrumental in engendering the dramatic shift from behaviorism to cognitive theories.",["Edward C. Tolman","Jean Piaget","German Gestalt","All of the given"],3,39],
+["___ intelligence is the ability to perceive the visual–spatial world accurately and involves sensitivity to color, line, shape, form, space, and the potential for recognizing and manipulating the patterns of spaces.",["Interpersonal","Spatial","Bodily-kinesthetic","Linguistic"],1,48],
+["Sternberg proposed his theory in 1985 as an alternative to the idea of the ___.",["general intelligence factor","multiple intelligences","specific intelligence factor","unconscious intelligence"],0,51],
+["Which of the following is not a kind of product in the structure of intellect model?",["symbolic","classes","systems","implications"],0,79]],
+3:[["The connections between nerves cells are called ___.",["systems","syntaxes","neurons","synapses"],3,2],
+["In order to create a ___, information must be changed into a usable form, which occurs through a process known as encoding.",["past memory","new imagination","new memory","past imagination"],2,3],
+["Calling back the stored information in response to some cue for use in a process or activity is called ___.",["Retrieval","Recall","Recollection","All of the given"],3,3],
+["For many with ___ deficits, reading facial expressions and knowing how to respond are confusing daily challenges.",["memory","intelligence","social cognition","biological cognition"],2,8],
+["The Information Processing View of Learning assumes that there are limits to how much information can be processed at each stage.",["True","False"],0,9],
+["The Information Processing View of Learning assumes that information process is involved in ___.",["forgetting","remembering","perceiving","All of the given"],3,9],
+["The capacity of the sensory register is ___.",["very small","very large","7+/-2 chunks","unlimited"],1,14],
+["Most children do not begin to engage in the process of rehearsal on their own until about age ___.",["seven","two","thirteen","one"],0,16],
+["___ provides an interface between the sub-systems of working memory and the part of long term memory specialized for episodic memory.",["Phonological loop","Visuo-spatial sketchpad","Retrieval buffer","Episodic buffer"],3,27],
+["Memories of specific episodes of one’s life refers to ___.",["declarative memory","experimental episodic memory","autobiographical episodic memory","procedural memory"],2,34]],
+4:[["___ thinking is the ability to create mental representations of objects, places, events, or people in your mind.",["General","Creative","Divergent","Symbolic"],3,3],
+["We compare new information to our ___ of the person, place, or thing, so we know how to categorize the new information mentally.",["protofit","protobite","prototype","none of the given"],2,4],
+["Which of the following is not true?",["Thinking is a higher mental process","Thinking is a sub-vocal talking","Thinking is fulfilling a need or problem solving","Thinking is only done in verbal symbols"],3,6],
+["Mental images are ___.",["Auditory","Visual","Gustatory","All of the given"],3,7],
+["___ organize complex phenomena into simpler, easily understandable, and usable categories and help to solve our problems.",["Concepts","Propositions","Constructs","Components"],0,8],
+["The lowermost level of Bloom’s taxonomy is ___.",["remember","apply","understand","analyze"],0,13],
+["The psychomotor domain of the Bloom’s taxonomy is concerned with ___.",["Biological makeup","Thoughts and beliefs","Feelings and emotions","Skilled behavior"],3,17],
+["Which of the following is an example of meta-cognition skills?",["Ignoring your limits","Self-monitoring","Skimming all important information","All of the given"],1,24],
+["___ critical thinking skill helps you analyze and process information to come to an unbiased conclusion.",["Open-mindedness","Self-regulation","Self-control","Observation"],0,32],
+["The inspiration phase of the creative thinking process refers to the ___ stage.",["Incubation","Insight","Evaluation","Preparation"],3,51]],
+5:[["Which of the following is true about motivation?",["It is a physical impulse","It is an external process","It has a willingness to activate but not channel the attitudes of learners","None of the given"],3,2],
+["The term “motivation” comes from a ___ word.",["Greek","Latin","Hindi","Bengali"],1,4],
+["It is called extrinsic motivation if causal factor is ___.",["curiosity","social pressure","self-satisfaction","needs"],1,5],
+["___ motivation is considered to be more crucial for students as it is associated with deep learning, better performance and self-efficacy.",["Intrinsic","Extrinsic","Introjected regulation","None of the given"],0,7],
+["___ proposed that there are three primary drives that drive human behavior.",["Hull","Watson","Piaget","Gestalt"],0,12],
+["Expectancy Theory of Motivation was developed by ___.",["Vroom","Hull","Murray","None of the given"],0,21],
+["An example of ___ is thinking, “If I work hard I can achieve the targets my boss has set for me”.",["purposeful","valence","instrumentality","expectancy"],3,23],
+["In SMART goals, T stands for ___.",["Temporary","Time-based","Tough","Testing"],1,27],
+["Friendship is a ___ need in Maslow’s hierarchy.",["Love and belonging","Esteem","Physiological","Safety"],0,"31-32"],
+["___ theory differentiates between autonomous motivation and controlled motivation.",["Arousal","Goal-setting","Need hierarchy","Self-determination"],3,37]],
+6:[["According to Daniel Goleman, ___ component of emotional intelligence focuses on how we handle relationships with others.",["self-awareness","motivation","empathy","emotional regulation"],2,2],
+["Emotional intelligence can be considered a type of ___ intelligence.",["academic","genetic","social","external"],2,3],
+["Noticing a difficult emotion and slowing down or resisting any impulsive action that may follow highlights ___ component of emotional intelligence.",["Self-regulation","Motivation","Emotional literacy","Empathy"],0,4],
+["The following are signs of emotional intelligence, except ___.",["strong sense of curiosity","holding onto mistakes","ability to manage emotions in difficult situations","self-confidence"],1,7],
+["Perceiving emotions means ___.",["Ignoring signals","Understanding only what somebody is saying to you","Understanding only somebody’s facial expression","Understanding both verbal and nonverbal signals"],3,11],
+["___ suggests that 10 distinct components provide the scaffolding of emotionally and socially intelligent behaviors.",["Bar-On","Goleman","Salovey","Mayer"],0,15],
+["Which of the following is a facilitator of EQ?",["optimism","happiness","independence","all of the given"],3,18],
+["___ is a strategy for improving one’s self-awareness.",["rejecting feedback","using critical self-talk daily","developing a fixed mindset","pursuing one’s passion"],3,20],
+["Having students create autobiographies is an example of creating opportunities for ___.",["emotional labor","emotional contagion","metacognition","none of the given"],2,23],
+["Which of the following is not true about management of emotions?",["It is essentially a private act","It is directly regulated by others","It is influenced by cultural norms","It is influenced by what society defines as appropriate to feel and express"],1,30]],
+7:[["Which of the following is false about learning according to Gagne’s definition?",["It is a change in human disposition","It persists over a period of time","It is simply ascribable to processes of growth","None of the above"],2,3],
+["Manual or physical skills come under ___ component of Bloom’s taxonomy.",["Cognitive","Affective","Psychomotor","Physical"],2,4],
+["Reflection, learning and education was explored by ___.",["Carl Rogers","John Watson","Benjamin Bloom","John Dewey"],3,5],
+["The principles of ___ refer to how close in time two events must be for a bond to be formed.",["behavior","reinforcement","repetition","contiguity"],3,6],
+["___ gives information to learners about their success or failure concerning the task at hand.",["Cognitive feedback","Emotional feedback","Reinforcement","Physical feedback"],0,7],
+["The ___ orientation to learning has a quality of personal involvement, the whole person in both feeling and cognitive aspects being in the learning event.",["behavioral","cognitive","humanistic","social"],2,8],
+["Learning through play is ___ learning.",["primary","secondary","passive","active"],3,15],
+["People with ___ learning style are prone to sorting their ideas after speaking, rather than thinking ideas through before.",["logical","solitary","visual","auditory"],3,17],
+["Which of the following statements is false?",["Effective instruction is static","Effective instruction is eclectic","Effective instruction is generative","Effective instruction is interactive"],0,22],
+["In ADDIE model, I stand for ___.",["instruction","implementation","integration","induction"],1,33]],
+8:[["The word ‘pedagogy’ has been derived from the ___ word “pedagogue”.",["Latin","Sanskrit","Greek","English"],2,3],
+["Which of the following statements is not true about pedagogy?",["It is a method or way of teaching","It is derived from the Greek word “pedagogue”","It helps a teacher understand how learning should be facilitated.","It harms the quality of teaching and learning."],3,"3-5"],
+["Pedagogy can enhance the student-teacher relationship.",["True","False"],0,3],
+["___ learning is based on the model that knowledge can be created within a population where members actively interact by sharing experiences and take on asymmetry roles.",["integrative","inquiry-based","collaborative","constructivist"],2,6],
+["The Pedagogical Model provides an overview of the learning cycle and breaks it down into ___ domains or phases of instruction.",["five","three","two","seven"],0,9],
+["Which of the following is not a type of inquiry-based approach?",["confrontation","structure","guided","open"],0,10],
+["In experiential learning, students are engaged ___.",["intellectually","soulfully","socially","all of the given"],3,14],
+["___ stage of experiential theory by Kolb focuses on planning.",["concrete experience","abstract conceptualization","reflective observation","active experimentation"],3,21],
+["People with a ___ learning style can often act on “gut feeling” and will rely on others' analysis rather than their own.",["accommodating","converging","diverging","assimilating"],0,25],
+["According to the ___ principle, students learn better from animation and narration than from animation and on-screen text.",["multimedia","modality","coherence","temporal contiguity"],1,45]],
+9:[["E-learning is any form of ___.",["teaching","training","tutoring","all of the given"],3,2],
+["___ is a feature of e-learning.",["difficulty in access","user friendliness","social injustice","closed learning"],1,2],
+["E-learning is a synonym of audio-visual learning, multimedia learning, and distance learning.",["True","False"],1,5],
+["Which of the following is not a type of e-learning?",["text-driven","interactive","simulation","physical"],3,"5-6"],
+["Which of the following is not a benefit of e-learning?",["It can accommodate the need of a housewife","People can revise the learning content as many times as they want","It facilitates in developing and communicating new training policies","None of the given"],3,6],
+["Good learners know ___.",["What they are learning","Why they are learning","How they are learning","All of the given"],3,12],
+["Learners may multitask when engaging in an online course, which could be resulting in ___.",["hyperfocus","better retrieval","shorter attention spans","None of the given"],2,19],
+["___ learning is the crucial determinant of successful e-learning.",["passive","retrospective","social","active"],3,13],
+["The brain can process 36,000 visual cues per ___.",["hour","second","day","year"],0,14],
+["For effective learning, online courses should ___.",["use headings","use complex language","present long pieces of text","use random images"],0,20]],
+10:[["During Covid-19 the world was busy in preparing 1.5 billion learners for the new normal, i.e., ___ learning.",["ineffective","physical","remote","experiential"],2,2],
+["To develop learner readiness for online learning, training sessions on ___ are helpful.",["netiquettes","time management","developing study skills","all of the given"],3,4],
+["The typical picture of a teacher being a dispenser of knowledge to the students has been replaced by that of a ___.",["obstructor","parent","friend","facilitator"],3,6],
+["In 2018, Global Education and Skills Forum noted that the ‘future’ teacher would need 5 skills to thrive in the 21st century. Which of the following is not one of them?",["Strong social skills","Data analysis","External focus","Strictness"],3,6],
+["Participatory education demands ___ so as to build a needs-based approach to teaching.",["creativity","stubbornness","reward","none of the given"],0,8],
+["Students who consider intelligence as a malleable entity tend to focus on their obstacles instead of goals.",["True","False"],1,10],
+["Which of the following is not a principle to enhance student learning?",["What students already know affects their learning","Learning is context-based","Students’ cognitive development and learning is limited by the general stages of development.","The acquisition of knowledge and skills in the long term depends largely on practice."],2,"10-11"],
+["___ feedback to students is important for learning.",["Unclear","Late","Harsh","Explanatory"],3,14],
+["Mastery goals are those that are geared towards the acquisition or improvement of ___.",["Skills","Number of students in a classroom","Teacher feedback","None of the given"],0,15],
+["The vast majority of formative assessment is ___.",["Formal","Incorrect","Written","informal"],3,44]],
+11:[["Social cognition has a protracted development through infancy to ___.",["teenage","old-age","adulthood","death"],2,2],
+["Which of the following abilities comes under social cognition?",["Face processing","Joint attention","Theory of mind","All of the given"],3,3],
+["Under social cognition, abilities involved in affective processing are often called ___.",["hot","cold","white","black"],0,3],
+["Social schemas refer to people's mental representations of social ___.",["values","memories","skills","patterns"],3,5],
+["During the earliest stages of development, children are very ___-centric. They see the world from their own perspective and struggle to think about how other people may view the world.",["selfish","ego","conscious","emotional"],1,6],
+["A theory of mind refers to a person's ability to understand and think about the ___ of other people.",["behaviors","family backgrounds","mental states","language"],2,8],
+["The same social behavior in one cultural setting might have a very different meaning and interpretation if it were to occur or be observed in another culture.",["True","False"],0,9],
+["Social cognitive theory by Bandura focuses on concepts of ___.",["self-efficacy","modeling","observational learning","all of the given"],3,11],
+["The central tenet of Bandura’s social-cognitive theory is that people seek to develop a sense of ___ over the important events in their lives.",["agency","dependency","attachment","emotion"],0,13],
+["___ hypothesis suggests that social processes influence how information is selected, organized, integrated, and retrieved.",["activation","cognitive influence","interaction","social cue strength"],1,30]],
+12:[["Sustainability in economic sustainability is ____.",["multidimensional","bidimensional","unidimensional","none of the given"],2,null],
+["The term “sustainable development” was first mentioned in a book related to the 1972 UN Stockholm conference on ____.",["water","poverty","economic crisis","human environment"],3,null],
+["Environmental sustainability focuses on impacts of processes, products and services on ____.",["water","biodiversity","human health","all of the given"],3,null],
+["Which of the following does not come under social sustainability?",["Labour practices","Revenue generation","Human rights","Business ethics"],1,null],
+["SDG __ focuses on clean water and sanitation.",["1","17","6","3"],2,null],
+["SDG 16 focuses on ____.",["No poverty","No hunger","Good health","Peace and justice"],3,null],
+["On 20 October 2020, the Higher Education Sustainability Initiative (HESI) raised the flag of higher education as a driver for sustainable development and inclusive societies on the first day of the ____ 2020.",["National Sustainability Meeting","National Teachers Meeting","Global Childrens' Meeting","Global Education Meeting"],3,null],
+["Education is related to all SDGs.",["True","False"],0,null],
+["Successful implementation of ESD requires a shift in focus from ____.",["teaching to learning","learning to teaching","reading to speaking","knowing to ignoring"],0,null],
+["Target 4.7 of SDG 4 focuses on ____.",["Environment education","Sustainable development and global citizenship","Primary education","Higher education"],1,null]]};
+const W=Object.fromEntries(Object.entries(R).map(([n,a])=>[n,a.map(([q,o,k,sl])=>[q,o,k,sl?`See lecture notes of week-${n} (slide no.${sl}).`:`Week ${n} assignment answer.`])]));
+const MH="Mental Health and Wellbeing";
+const MHD={
+1:[["Which factor best contributes to overall mental wellbeing?",["Ability to cope with life challenges","Constant happiness","Avoiding all stress","Ignoring emotions"],0,"Wellbeing means managing stress, adapting to difficulties and functioning well despite challenges, not feeling happy all the time."],
+["Which of the following is the correct sequence of stages in the General Adaptation Syndrome?",["Resistance → Alarm → Exhaustion","Alarm → Exhaustion → Resistance","Alarm → Resistance → Exhaustion","Exhaustion → Alarm → Resistance"],2,"Selye: the body reacts (Alarm), tries to adapt (Resistance), and if stress continues without recovery, resources deplete (Exhaustion)."],
+["Which behaviour reflects healthy coping?",["Suppressing feelings","Avoiding problems","Engaging in hobbies","Overthinking situations"],2,"Hobbies, exercise or time with loved ones manage stress constructively, unlike avoidance or suppression."],
+["What is a key characteristic of digital overload?",["Mental exhaustion from excessive information","Improved focus","Reduced device usage","Increased relaxation"],0,"Constant emails, notifications and online information overwhelm the brain, causing cognitive fatigue and stress."],
+["Meher compares herself to influencers and feels inferior. Which theory explains this?",["Operant conditioning","Cognitive dissonance","Social comparison theory","Behavioral theory"],2,"People evaluate themselves by comparing with others; comparing with idealised images lowers self-esteem."],
+["Which of the following is an example of unhealthy social media behavior?",["Learning new skills","Connecting with friends","Watching informative content","Comparing oneself constantly with others"],3,"Constant comparison harms self-esteem, increases anxiety and creates unrealistic expectations."],
+["What is the main purpose of relaxation techniques?",["Increase stress levels","Improve memory only","Reduce physiological and mental tension","Avoid responsibilities"],2,"They activate the body's relaxation response, slowing heart rate, easing muscle tension and lowering stress hormones."],
+["Which practice helps in improving self-awareness?",["Mindful observation of thoughts","Ignoring emotions","Multitasking","Social withdrawal"],0,"Mindfulness means noticing thoughts, emotions and sensations without judgment, which builds self-awareness."],
+["According to Piaget's theory, what is the “imaginary audience”?",["A group of friends who provide feedback on behavior","The belief that others are constantly watching, noticing, and evaluating oneself","The tendency to imitate people seen in the media","The ability to understand another person's perspective"],1,"A feature of adolescent egocentrism: teens believe others are always observing and judging them."]],
+2:[["Peer pressure can best be described as:",["Self-motivation","Family expectations","Personal decision-making","Influence from peers to act in certain ways"],3,"It is influence from peers on thoughts, attitudes or behaviour, and it can be positive or negative."],
+["Assertiveness helps individuals to:",["Please everyone","Express thoughts respectfully","Avoid communication","Dominate others"],1,"It lets people express thoughts and needs clearly and respectfully without being aggressive."],
+["Which factor strongly affects body image in adolescents?",["Media influence","Weather","Food habits only","Sleep cycle"],0,"Unrealistic, edited images in media create pressure to look a certain way and lower self-esteem."],
+["What is the purpose of mindfulness?",["Focus on past mistakes","Worry about future","Stay present in the moment","Avoid emotions"],2,"It focuses attention on the present with openness and without judgment, reducing stress."],
+["Which is a relaxation technique?",["Meditation","Overthinking","Isolation","Procrastination"],0,"Meditation calms the mind and body by focusing attention and letting distracting thoughts pass."],
+["Emotional regulation refers to:",["Suppressing all emotions","Ignoring feelings","Expressing anger freely","Managing emotions effectively"],3,"It means recognising, understanding and managing emotions constructively, not suppressing them."],
+["A student’s peers encourage her to join a study group and maintain a healthier routine. Although she initially feels hesitant, the decision aligns with her personal goals and helps her develop better habits. Which aspect most strongly indicates that this is positive peer pressure?",["She agrees because she does not want to be excluded from the group.","She feels nervous before making the decision.","The influence aligns with her values and contributes to personal growth.","She changes her behaviour primarily to gain approval from her peers."],2,"Positive peer pressure supports one's own values and goals and promotes growth, rather than seeking approval."],
+["Active listening involves:",["Interrupting others","Judging quickly","Paying full attention","Ignoring body language"],2,"Concentrating fully, observing body language and responding thoughtfully builds trust and understanding."],
+["Building self-esteem means:",["Comparing with others","Accepting oneself","Seeking validation only","Avoiding challenges"],1,"It involves accepting both strengths and limitations without relying on comparison or external praise."],
+["Why can body image concerns feel more intense during adolescence?",["Adolescents experience very few emotional changes.","Heightened emotional volatility can amplify concerns about appearance and self-worth.","Adolescents do not care about their appearance.","Mood swings reduce concerns about self-worth."],1,"Rapid hormonal and emotional changes plus a need for acceptance make adolescents more sensitive to appearance."]]};
+const WMH=Object.fromEntries([1,2,3,4,5,6,7,8,9,10,11,12].map(n=>[n,MHD[n]||[]]));
+const LG="Logistics and Supply Chain Management";
+const LR={
+1:[["Which of the following best defines logistics?",["The process of manufacturing goods at the lowest cost","The management of the flow of goods, information, and resources from point of origin to point of consumption","The marketing and distribution of finished products only","The financial planning of a company's supply chain"],1],
+["Which step comes immediately after order placement in the logistics process?",["Delivery","Transportation","Order Processing","Warehousing"],2],
+["Just-in-Time (JIT) logistics primarily aims to:",["Increase buffer stock in warehouses","Minimize inventory holding costs by aligning production with customer demand","Expand the number of suppliers","Increase lead times for better planning"],1],
+["Omni-channel logistics is primarily driven by the growth of:",["Air freight","E-commerce and multi-channel retailing","Rail transportation","Traditional brick and mortar stores"],1],
+["Which of the following is a challenge specific to Indian logistics companies?",["Surplus of delivery staff and drivers","Overdevelopment of warehousing infrastructure","High order intensity ratio and transportation roadblocks","Excessive investment in new technologies"],2],
+["A 5PL (Fifth Party Logistics) provider is also known as a:",["Logistics aggregator","Asset-based carrier","Lead logistics provider","In-house logistics manager"],0],
+["Which modern logistics concept focuses on reducing environmental impact through eco-friendly fuels, packaging reduction, and waste minimization?",["Lean Logistics","Agile Logistics","Green Logistics","Reverse Logistics"],2],
+["Cross-docking is best described as:",["Long-term storage of goods in a central warehouse","A type of customs clearance procedure","A method of inventory counting","A process where incoming shipments are unloaded, sorted, and loaded onto outbound trucks without long-term storage"],3],
+["Which of the following is a utility of warehousing?",["Increasing transportation costs","Reducing product quality","Providing seasonal storage to handle demand fluctuations","Replacing manufacturing operations"],2],
+["Which type of logistics service provider is described as an “asset-based carrier” that owns its own transportation means such as ships, airlines, or trucks?",["1PL","2PL","4PL","5PL"],1]],
+2:[["Which e-logistics key element allows for the electronic exchange of business documents like purchase orders and invoices between trading partners?",["Warehouse Management System (WMS)","Transportation Management System (TMS)","Electronic Data Interchange (EDI)","Global Trade Management (GTM)"],2],
+["Which technology in e-logistics enhances transparency, security, and traceability in supply chain transactions through decentralized record-keeping?",["Blockchain technology","GPS tracking","RFID","Cloud computing"],0],
+["Incoterms are standardized terms that define:",["Packaging standards for global shipments","The rights and responsibilities of buyers and sellers in international transactions","Customs duty rates across countries","Insurance premiums for international cargo"],1],
+["Which market penetration strategy involves selling goods produced in one country directly to customers in another country?",["Licensing","Joint Venture","Exporting","Countertrade"],2],
+["Tata Steel's acquisition of Corus Group is an example of which international market penetration strategy?",["Exporting","Licensing","Joint Venture","Acquisition"],3],
+["According to the 7 QC Tools, the Pareto Diagram is based on which principle?",["70-30 rule","80-20 rule","60-40 rule","90-10 rule"],1],
+["The PDCA cycle was made popular by which consultant, though attributed to Walter Shewhart?",["Joseph Juran","Philip Crosby","William Edwards Deming","Kaoru Ishikawa"],2],
+["On-Time Delivery (OTD) is a KPI that belongs to which category of logistics management?",["Transportation Management","Supply Management","Distribution Management","Warehousing and Order Management"],2],
+["In the 5S philosophy, “SEISO” corresponds to which action?",["Sort","Set in Order","Standardize","Shine"],3],
+["Which of the following is a challenge unique to cross-border transactions compared to domestic ones?",["Use of barcodes","Currency exchange rate fluctuations","Use of warehousing","Product packaging"],1]],
+3:[["Which of the following is listed as a factor for successful reverse logistics?",["Maximizing landfill usage","Reducing supplier collaboration","Technology and Data Analytics","Minimizing customer returns policy options"],2],
+["Green Supply Chain Management (GSCM) primarily reflects the relationship between:",["Financial planning and procurement","Natural environment and supply chain operations","Customer satisfaction and brand management","Manufacturing output and warehouse capacity"],1],
+["Myntra's initiative to replace poly pouches with recycled paper bags is an example of which green logistics practice?",["Green transportation","Green procurement","Green packaging","Green warehousing"],2],
+["Lean logistics focuses primarily on:",["Increasing inventory buffer levels","Expanding supplier networks across borders","Eliminating waste, improving efficiency, and streamlining supply chain processes","Maximizing warehouse storage space utilization"],2],
+["Which of the following is NOT one of the 7 types of Muda as categorized by Taiichi Ohno within the Toyota Production System?",["Innovation","Waiting","Transport","Overproduction"],0],
+["‘Muri’ in the context of lean logistics means:",["Waste in production processes","Unevenness in demand and production","Overburden or unnecessary stress on employees and processes","Excess inventory holding costs"],2],
+["The term ‘Lean Logistics’ was coined by whom in his 1988 master's thesis at MIT?",["Taiichi Ohno","John Krafcik","Shigeo Shingo","Kiichiro Toyoda"],1],
+["The principle of lean logistics that involves creating a visual representation of all steps in the process including material flows, information flows, and process times is called:",["Just-in-Time (JIT)","DMAIC","5S","Value Stream Mapping (VSM)"],3],
+["In the DMAIC methodology, what does the ‘C’ stand for?",["Coordinate","Confirm","Control","Calculate"],2],
+["Heijunka in the Toyota Production System refers to:",["Error-proofing devices to prevent defects","Production smoothing to level fluctuations in demand and performance","Continuous improvement through small incremental changes","Autonomous defect detection and machine stoppage"],1]],
+4:[["Elastic logistics refers to:",["The use of rubber materials in packaging","The ability of a business to rapidly reduce or expand logistics activities in line with supply chain demand using data-driven technology","A method of stretching delivery deadlines","Flexible pricing models for shipping"],1],
+["In logistics, blockchain technology primarily helps by:",["Increasing fuel consumption","Reducing the need for transportation","Replacing all human warehouse workers","Identifying non-compliance with standards or product damage, and improving workflow through smart contracts"],3],
+["Amazon's ‘anticipatory shipping’ works by:",["Shipping all products from a single central warehouse","Predicting when, where, and which items customers will purchase based on buying habit history","Requiring customers to pre-pay for shipping months in advance","Only delivering products on weekends"],1],
+["Which performance measure for modern day logistics assesses metrics such as carbon emissions, fuel consumption, and waste generation?",["Efficiency","Cost-effectiveness","Environmental impact","Customer satisfaction"],2],
+["Flipkart's use of drone deliveries in some areas is an example of which trend in Indian logistics?",["Last-mile delivery innovations","Cold chain logistics","Blockchain adoption","Reverse logistics optimization"],0],
+["Who is credited by many experts as the person who coined the term ‘supply chain management’ in the early 1980s?",["Taiichi Ohno","Keith Oliver","Michael Porter","Peter Drucker"],1],
+["Less Than Truckload (LTL) shipping primarily benefits businesses by:",["Requiring customers to pay for the entire truck regardless of usage","Increasing the environmental impact of shipping","Eliminating the need for any carriers","Allowing customers to pay only for the portion of carrier space they use, while consolidating multiple smaller orders"],3],
+["Which role of Big Data in logistics helps companies analyze historical and real-time data to forecast demand and anticipate disruptions?",["Predictive analytics","Route optimization","Warehouse management","Risk management"],0],
+["In blockchain-based logistics, ‘smart contracts’ are best described as:",["Paper contracts signed digitally","Insurance contracts for damaged goods","Contracts that require manual approval at every step","Self-executing contracts with predefined rules that are automatically enforced when certain criteria are met"],3],
+["Cold chain logistics management is primarily concerned with:",["The management and transportation of temperature-sensitive products like perishables and pharmaceuticals in a controlled environment","Managing logistics operations during winter seasons only","Reducing the cost of air conditioning in warehouses","Shipping goods only to cold regions"],0]],
+5:[["Which supply chain model is best suited for companies affected by seasonality, with high demand peaks and low volume at other times?",["Continuous flow model","Agile model","Fast model","Flexible model"],3],
+["In the Manufacturing vs Service Supply Chain comparison, how is ‘demand uncertainty’ managed differently?",["Manufacturing uses queues; services use inventory","Manufacturing uses inventory; services use queues","Both use inventory equally","Both use queues equally"],1],
+["Production Management attempts to utilize the ‘6 M's’. Which of the following is NOT one of the 6 M's?",["Man and Machine","Methods and Money","Materials and Markets","Motivation and Media"],3],
+["What is the correct sequence of the first three steps in Procurement Management?",["Placing the Purchase Order → Negotiating the Contract → Identifying and Planning","Identifying and Planning → Choosing and Selecting Suppliers → Negotiating the Contract","Negotiating the Contract → Identifying and Planning → Choosing Suppliers","Receipt and Inspection → Clearing the Invoice → Maintaining Records"],1],
+["Vertical Integration in sourcing involves:",["Forming joint ventures with international companies","Merging of companies at different production and/or distribution stages in the same industry","Outsourcing all non-core activities","Purchasing from multiple suppliers simultaneously"],1],
+["Which of the following is a key characteristic of a Service Supply Chain's production system?",["Pull (initiated by customer demand)","Push (sell from inventory)","Both push and pull equally","Neither push nor pull"],0],
+["Which type of sourcing involves delegating a job to someone within the company itself?",["Outsourcing","Near-sourcing","Insourcing","Global sourcing"],2],
+["The three principle streams of the supply chain are:",["Planning, Execution, and Monitoring","Procurement/Supply/Sourcing; Operations/Material/Production; Logistics/Distribution","Inbound, Internal, and Outbound logistics","Strategic, Tactical, and Operational management"],1],
+["Logistics Management ensures that the right product is delivered to the right place, at the right time, and in the right condition, while:",["Maximizing advertising spend","Minimizing costs and maximizing efficiency","Increasing production batch sizes","Reducing the number of suppliers"],1],
+["Supply chain network design decisions are classified into four categories. Which of the following is NOT one of them?",["Facility role","Facility location","Employee compensation","Capacity allocation"],2]],
+6:[["‘Implied demand uncertainty’ in a supply chain focuses on:",["The total annual sales forecast of a company along with the variability caused due to seasonal patterns","The uncertainty associated with the portion of demand the supply chain plans to satisfy","The transportation costs across distribution centres","The variability in supplier pricing because of the seasonal pricing"],1],
+["The three Supply Chain Macro Processes are:",["Planning, Sourcing, and Delivering","Design, Build, and Distribute","Procurement, Operations, and Logistics","Customer Relationship Management, Internal Supply Chain Management, and Supplier Relationship Management"],3],
+["In the Cyclic View of the supply chain, which cycle occurs at the interface between the retailer and the distributor?",["Customer order cycle","Replenishment cycle","Manufacturing cycle","Procurement cycle"],1],
+["In the Push/Pull View of the supply chain, a ‘Pull’ process is best defined as:",["Execution initiated in anticipation of customer orders (speculative)","Producing goods before knowing actual customer demand","Execution initiated in response to a customer order (reactive)","Holding large amounts of finished goods inventory"],2],
+["Which Transportation mode is generally used to achieve the highest responsiveness in a supply chain?",["Sea freight","Rail transport","Air freight","Pipeline"],2],
+["The six key drivers of supply chain performance are:",["Facilities, Inventory, Transportation, Information, Sourcing, and Pricing","People, Process, Technology, Culture, Structure, and Strategy","Planning, Scheduling, Executing, Monitoring, Controlling, and Improving","Procurement, Operations, Logistics, Distribution, Returns, and Sustainability"],0],
+["Centralizing facilities in a supply chain tends to:",["Increase responsiveness and increase costs","Increase efficiency but reduce responsiveness","Reduce efficiency and reduce responsiveness","Increase responsiveness and reduce costs"],1],
+["According to Little's Law in inventory management, reducing inventory while keeping throughput constant will:",["Decrease flow time","Increase flow time","Have no effect on flow time","Eliminate the need for safety stock"],0],
+["In Amazon's pricing example, customers opting for free shipping (ships in 7-14 business days) help Amazon by:",["Generating the highest revenue per order","Levelling out the workload at the warehouse over time, improving efficiency","Increasing the urgency of Amazon's logistics operations","Reducing Amazon's need for any inventory"],1],
+["A firm serving primarily emergency orders faces _____ implied demand uncertainty compared to a firm with long lead times.",["Lower","Equal","Higher","No difference in"],2]],
+7:[["According to the traditional view of supply chain management, which of the following are considered the three primary “impellers” that drive a supply chain?",["Sustainability, Collaboration, and Globalization","Empowered Customers, Information Technology Tool Developments, and Globalization","Pricing Mechanisms, Sourcing Strategies, and Inventory Management","Systems Concept, Total Cost Concept, and Trade-off Concept"],1],
+["Which of the following best describes the “bullwhip effect” in a supply chain?",["The process of reducing total operational costs by eliminating hidden expenses in procurement and storage","A phenomenon where small fluctuations in consumer demand leads to increasingly larger variations in orders placed further upstream in the supply chain","A strategic approach to minimizing inventory by having suppliers manage the replenishment process directly","The impact of globalization on increasing competition and operational risks for businesses"],1],
+["Which concept encapsulates the proactive ability of supply chain professionals to anticipate, understand, and effectively navigate shifts and challenges within the supply chain environment?",["Demand Sense","Supply Response","Supply Sense","Demand Response"],2],
+["As organizations digitize their operations using modern ERP tools, IoT sensors, and AI/ML automation, what critical strategy must they increasingly invest in to mitigate the rising rate of network threats and security risks?",["Agile Scaling Strategy","Cybersecurity Strategy","Collaborative Forecasting Strategy","Predictive Maintenance Strategy"],1],
+["Achieving a “strategic fit” within an organization is a systematic process. Which of the following outlines the correct order of the three sequential steps required to achieve this alignment?",["Step 1: Minimize supply chain costs; Step 2: Maximize response times; Step 3: Expand regional warehouse facilities","Step 1: Optimize internal inventory size; Step 2: Establish supplier locations; Step 3: Formulate marketing pricing","Step 1: Understanding the customer and supply chain uncertainty; Step 2: Understanding the supply chain capabilities; Step 3: Achieving strategic fit or Coordinate Functional Strategies","Step 1: Implementing advanced ERP tools; Step 2: Executing robot automation; Step 3: Launching cybersecurity strategies"],2],
+["According to the case study, why does the smartphone giant Apple Inc. choose to outsource the manufacturing and assembly of all its devices to China rather than keeping production in the United States?",["Because hardware design and software engineering are its only core competencies, and China offers substantially lower manufacturing costs","Because United States trade regulations strictly prohibit the domestic assembly of advanced telecommunication tools","Because Apple relies entirely on Chinese consumer markets to purchase more than 90% of its global outgoing inventory","Because manufacturing is considered Apple's primary core competency, and it owns the majority of operating facilities located in China"],0],
+["According to the case study, what core logistics procedure lies at the heart of Walmart's strategy to efficiently replenish stock, decrease inventory and transportation costs, and save transit time?",["Collaborative Planning, Forecasting, and Replenishment (CPFR)","Cross-docking","Third-Party Logistics (3PL) Outsourcing","Vendor-Managed Inventory (VMI)"],1],
+["When a company evaluates its distribution design strategy, which specific component is responsible for designing systems and technologies such as demand forecasting and order management to facilitate seamless communication and ensure real-time visibility across the entire supply chain?",["Operating Facilities","Information Flows","Logistics Strategy","Service Differentiation"],1],
+["Michael Porter’s Five Forces model is traditionally applied to overall business strategy, how is it specifically adapted in this context to benefit an organization's operations?",["To calculate the exact financial payback period of automating a warehouse","To analyze competitive forces and assess the dynamics of the supply chain environment","To measure the daily inventory turnover ratio of active retail facilities","To completely replace the internal SWOT analysis before beginning logistics planning"],1],
+["How can outsourcing and strategic alliances help businesses “Enhance Competitiveness” in the market?",["By allowing them to access specialized resources, capabilities, and expertise that they may not possess internally","By eliminating the need to track predefined KPIs and benchmarks","By shifting all market frictions and regulatory compliance entirely onto the end customer","By ensuring that all manufacturing and design processes are strictly localized within a single operating facility"],0]],
+8:[["What is the primary focus of strategic sourcing?",["Finding the absolute lowest purchase price only","Maximizing short-term transaction volumes","Optimizing the supply chain and achieving long-term business goals","Eliminating all international suppliers"],2],
+["How are “A-Class Suppliers” characterized in an ABC Analysis framework?",["A large number of suppliers that account for low spend or importance","A moderate number of suppliers with average spend or importance","Suppliers that offer the lowest initial purchase price regardless of quality","A small number of suppliers that account for the majority of spend or strategic importance"],3],
+["What is the fundamental definition of “Lead Time”?",["The total profit margin generated by an individual product line","The duration required to complete a specific task or process","The number of items successfully returned by a customer per quarter","The maximum storage capacity of a localized distribution centre"],1],
+["What is the main purpose of “Collaborative Forecasting” between suppliers and manufacturers?",["To predict future demand so suppliers can adjust their production schedules accordingly","To determine the retail price of finished goods","To eliminate the need for any contract negotiations","To shift all market risks exclusively onto the distributors"],0],
+["Which perspective of the Balanced Scorecard focuses on indicators like process alignment, identifying process bottlenecks, and increasing process automation?",["Financial Perspective","Customer Perspective","Internal Process Perspective","Learning and Growth Perspective"],2],
+["“Data inaccuracies and delays in information sharing” are classified under which category of obstacles?",["Information processing obstacles","Inventive obstacles","Operational obstacles","Pricing obstacles"],0],
+["What is the core purpose of a formal vendor rating system?",["To automatically lower the retail price of consumer goods","To assess and monitor supplier performance based on criteria like delivery, quality, price, and service","To eliminate the need for cross-functional management teams","To completely outsource the procurement department's activities"],1],
+["Who originally developed the Balanced Scorecard (BSC) framework?",["Sunil Chopra and Peter Meindl","Taiichi Ohno and Shigeo Shingo","Michael Porter and Peter Drucker","Robert Kaplan and David Norton"],3],
+["When evaluating the “Cost” dimension in global sourcing, what should an organization consider beyond just the primary purchase price?",["Marketing expenses and corporate tax rates","Total cost of ownership and potential infrastructure investments","Domestic inflation rates and retail price indexing","Competitor pricing models and local labour union fees"],1],
+["In the Kraljic Matrix model, a supplier categorized as having a “High profit impact” but “Low supply risk” is known as a:",["Strategic Supplier","Bottleneck Supplier","Leverage Supplier","Non-critical Supplier"],2]],
+9:[["Which of the following describes how a company targeting customers who value short response times should design its distribution network?",["Locate fewer facilities that are farther away from the customers","Locate facilities close to the customers","Centralize all inventory in a single global warehouse","Rely solely on digital delivery methods"],1],
+["What is defined as “the probability of having a product in stock when a customer order arrives”?",["Product Availability","Response Time","Product Variety","Order Visibility"],0],
+["Why do outbound transportation costs per unit tend to be higher than inbound transportation costs?",["Outbound shipments travel much longer distances","Inbound shipments are heavily taxed by the government","Outbound products require specialized temperature-controlled vehicles","Inbound lot sizes are typically larger, allowing for economies of scale"],3],
+["What is the final leg of the delivery process where products are brought directly to the customer's doorstep called in online sales distribution?",["Fulfillment Centering","Last-Mile Delivery","Inventory Aggregation","Order Processing"],1],
+["Which of the following is a key characteristic of the “Manufacturer Storage with Direct Shipping” distribution network design?",["Products are stored at retail stores for customer pickup.","Inventory is held entirely by third-party distributors in regional hubs","The manufacturer eliminates intermediaries and ships products directly to the end customer","Products must pass through a local distributor before reaching the customer"],2],
+["The study of facility location problems (FLP), also known as location analysis, is a branch of which two academic fields?",["Operations Research and Computational Geometry","Macroeconomics and Behavioral Psychology","Human Resource Management and Civil Engineering","Financial Accounting and Marketing Analytics"],0],
+["When using the point rating technique, what should the total sum of all assigned weights equal if you are using decimals?",["0.5","1","5","10"],1],
+["Factors like the Cost of Labor, Cost of Land and Facilities, and Taxation fall under which main category?",["Environmental Factors","Social Factors","Economic Factors","Technological Factors"],2],
+["The Centre of Gravity (CG) model is a mathematical approach primarily used to determine the optimal location for a new facility by minimizing which of the following?",["Local property and corporate income tax rates","Transportation costs associated with serving multiple locations","Employee turnover and training costs","Environmental regulations and compliance fees"],1],
+["According to the case study, how did Dell's distribution model change in 2007?",["They completely shut down their online sales channel","They began distributing their products through retail stores like Wal-Mart","They shifted entirely to a distributor storage with carrier delivery network","They stopped selling customized hardware to focus only on standardized PCs"],1]],
+10:[["According to demand forecasting is the process of understanding and predicting customer demand to help businesses avoid which of the following?",["High shipping costs and bad PR","Overproduction and underproduction","Competition entering the market","Falling crude oil prices"],1],
+["If a business sells swimwear and strategically decides to store the majority of its inventory in Florida where it is ordered most, which factor influencing demand forecast are they addressing?",["Competition","Economy","Geography","Seasonality"],2],
+["Why can relying too heavily on historical sales data lead to inaccurate demand predictions?",["Because past data cannot account for various evolving market factors","Because past data is completely deleted every calendar year","Because historical data is only useful for startup businesses","Because it forces companies to hire too many data analysts"],0],
+["What does expert or insider knowledge refer to in the context of demand forecasting?",["Information gathered strictly from automated internet search bots","Specialized understanding and insights held by individuals with significant experience in a particular field or industry","Financial data publicly released by international banking institutions","Customer feedback forms collected randomly from retail storefronts"],1],
+["Which of the following correctly identifies the formula used to calculate a facility's Efficiency percentage?",["Efficiency= (Actual Output / Design Capacity) * 100%","Efficiency= (Effective Capacity /Design Capacity) * 100%","Efficiency = (Actual Output/ Effective Capacity) * 100%","Efficiency = (Design Capacity - Allowances) * 100%"],2],
+["What are the four major components that make up transportation decisions in supply chain management?",["Production, Planning, Efficiency, and Utilization","Fixed Cost, Variable Cost, Revenue, and Profit","Load, Mode, Flow, and Route","Interviews, Focus Groups, Surveys, and Delphi Method"],2],
+["According to a Balanced Transportation Problem is a special case where which of the following conditions is met?",["The total variable costs exactly equal the total fixed costs","The total supply from all sources equals the total demand at all destinations","The shipment volume is optimized using only rail and road transit","The number of source factories is exactly equal to the number of retail outlets"],1],
+["How does accurate demand forecasting help a business strike the right balance in inventory management?",["By reducing carrying costs and preventing stockouts","By ensuring that products are only sold online","By automatically increasing the prices of older items","By replacing human workers with automated machinery"],0],
+["Which type of capacity planning considers future requirements over several years and utilizes supply and need forecasting to align carefully with business goals and growth?",["Short-term Capacity Planning","Operational Capacity Planning","Medium-term Capacity Planning","Long-term or Strategic Capacity Planning"],3],
+["Which of the following sets of factors is explicitly mentioned as a reason why companies have limited visibility into the future when predicting demand?",["Overproduction, underproduction, and short shelf-lives","Lack of human resources, bad PR, and high shipping costs","Market volatility, rapid technological changes, and unpredictable external events","Steady customer retention, passive forecasting, and geographic planning"],2]],
+11:[["Which of the following formulas is used to calculate Minimum Stock?",["Minimum Stock = Safety Stock - Buffer Stock","Minimum Stock = Buffer Stock + Safety Stock","Minimum Stock = Reorder level + Safety Stock","Minimum Stock = Maximum Daily Sales + Maximum Lead Time"],1],
+["Which type of inventory consists of items kept in reserve to be processed by a second machine if the first machine fails?",["Cycle Inventory","Transit Inventory","MRO Inventory","Decoupling Inventory"],3],
+["What does the Days Sales of Inventory (DSI) metric specifically indicate about a company's inventory?",["The total cost of raw materials purchased in a single year.","The percentage of profit earned from each unit of inventory sold.","The maximum number of days a company can store finished goods before they expire.","The average time in days it takes for a company to turn its inventory into sales."],3],
+["The “Zero Inventory” concept is primarily based on which manufacturing and inventory management strategy?",["Bulk Ordering Strategy","Over-Stocking Principle","Just-In-Time (JIT)","Manual Data Recording"],2],
+["What is the ultimate goal of a resilient supply chain?",["To bounce back from disruptions and learn from them to improve future performance","To ensure a company never has to change its suppliers","To eliminate all human workers from the manufacturing process","To increase the amount of paperwork required for every transaction"],0],
+["Which of the following is a key benefit of supply chain digitization that helps companies avoid high stockout costs?",["Better financial management through automated reorder notifications","Manual record-keeping","Increased reliance on paper-based documentation","Eliminating all human workers from the warehouse"],0],
+["What is the core principle of Vendor Managed Inventory (VMI)?",["The retailer is solely responsible for managing all stock in the warehouse.","Inventory is only managed once it has been fully depleted.","Customers must manage the inventory themselves before making a purchase.","The supplier assumes responsibility for managing the inventory at the retailer's location."],3],
+["In the ABC Analysis model, which category of inventory typically represents only 20% of the total stock but accounts for 70% of the total income?",["Category C","Category B","Category A","Category D"],2],
+["Which of the following is a key component of supply chain digitization that uses devices like sensors and RFID tags to collect real-time data on inventory and shipments?",["Manual Ledger Entry","Traditional Filing Systems","Paper-based Documentation","Internet of Things (IoT)"],3],
+["In the context of supply chain management and digitization, what does the abbreviation ERP stand for?",["Enterprise Resource Planning","Electronic Resource Planning","Efficient Retail Processing","Essential Reliable Procurement"],0]],
+12:[["What is the core goal of supply chain sustainability?",["To minimize environmental harm from factors like energy, water, and waste","To replace traditional corporate supply chain concerns entirely","To focus exclusively on raw material sourcing and ignore storage or delivery","To find the fastest transportation links available"],0],
+["Who originally coined and developed the concept of the Triple Bottom Line?",["John Elkington","Michael Porter","Edward Freeman","Peter Drucker"],0],
+["Goods that are currently in the middle of being manufactured but are not yet completed are classified as what type of asset?",["Raw Materials","Work-in-Progress (WIP)","Packaging Materials","Finished Goods"],1],
+["Which of the following represents a traditional corporate supply chain concern that exists in addition to sustainability efforts?",["Human impact on communities","Water consumption","Revenue and profit","Energy usage"],2],
+["What is the primary barrier to implementing sustainable supply chains?",["Lack of corporate offices","Cost","Fast shipping speeds","Excessive software options"],1],
+["Why do conventional supply chains adopt proactive or reactive strategies?",["To completely change their business model every year","To shut down all local operations permanently","To address disruptions like fires, floods, or labour strikes","To avoid using any transportation networks"],2],
+["Which type of supply chain asset refers to the initial components or materials used to start the production process?",["Raw Materials","Tools and Equipment","Finished Goods","Work-in-Progress (WIP)"],0],
+["Which specific real-world event is explicitly highlighted as an example of effective humanitarian supply chain coordination?",["The 2024 global shipping route restructuring","The EY sustainability survey launch","The Unilever global distribution expansion","The 2015 Nepal earthquake"],3],
+["What is the meaning of supply chain asset?",["Any tangible or intangible resource within a supply chain that contributes to its overall functioning and value creation","Only the cash stored in a company's corporate bank account","A government tax applied to international shipping routes","The total number of customers who buy a product online"],0],
+["Unlike inventory management, Asset Management is responsible for managing items:",["Only when customers return them due to dissatisfaction","With minimal contact and minimal details recorded","Through their complete life cycles, from procurement to disposal","Strictly to replenish goods and parts to sell to customers"],2]]};
+const WL=Object.fromEntries(Object.entries(LR).map(([n,a])=>[n,a.map(([q,o,k])=>[q,o,k,`Week ${n} assignment answer.`])]));
+const XR={
+1:[["A decrease in response after repeated exposure to the same harmless stimulus is called:",["Sensitization","Habituation","Discovery learning","Observational learning"],1],
+["According to Ausubel, meaningful learning occurs when new information is:",["Memorized without understanding","Learned only through rewards","Connected to relevant existing knowledge","Kept separate from previous knowledge"],2],
+["Learning by observing another person’s behaviour is closely associated with:",["Ivan Pavlov","B. F. Skinner","John B. Watson","Albert Bandura"],3],
+["Who proposed learning by discovery?",["Jerome Bruner","David Ausubel","Albert Bandura","B. F. Skinner"],0],
+["Which type of feedback best supports learning?",["Delayed and vague","Clear, explanatory, and timely","Limited to marks without explanation","Unrelated to the learner’s work"],1],
+["After a bell is repeatedly paired with food and begins to produce salivation on its own, the bell becomes a:",["Unconditioned response","Unconditioned stimulus","Conditioned stimulus","Conditioned response"],2],
+["Negative reinforcement increases a behaviour by:",["Removing an unpleasant stimulus","Adding an unpleasant stimulus","Removing a pleasant stimulus","Adding a pleasant stimulus"],0],
+["Adding an unpleasant consequence to reduce a behaviour is called:",["Positive reinforcement","Negative reinforcement","Negative punishment","Positive punishment"],3],
+["Which reinforcement schedule provides reinforcement after a fixed number of responses?",["Fixed-interval schedule","Variable-interval schedule","Fixed-ratio schedule","Variable-ratio schedule"],2],
+["When a previously reinforced behaviour weakens because reinforcement is discontinued, this is called:",["Discrimination","Extinction","Sensitization","Generalization"],1]],
+2:[["Cognitivism mainly focuses on how the mind:",["Responds only to rewards","Develops physical reflexes","Receives, organizes, stores, and retrieves information","Learns without using memory"],2],
+["According to Gardner, understanding one’s own feelings, abilities, and motivations reflects:",["Intrapersonal intelligence","Interpersonal intelligence","Musical intelligence","Linguistic intelligence"],0],
+["Which three types of intelligence are included in Sternberg’s triarchic theory?",["Linguistic, musical, and spatial","Emotional, social, and physical","Verbal, numerical, and mechanical","Analytical, creative, and practical"],3],
+["In the PASS model, processing information in a specific serial order is called:",["Simultaneous processing","Successive processing","Planning","Attention-arousal"],1],
+["Which concept in brain-based learning emphasizes feeling calm and relaxed while remaining ready to learn?",["Orchestrated immersion","Active processing","Relaxed alertness","Rote memorization"],2],
+["Which operation in Guilford’s Structure of Intellect theory is most closely associated with generating multiple creative ideas?",["Divergent production","Convergent production","Memory retention","Evaluation"],0],
+["What is the first event in Gagné’s Nine Events of Instruction?",["Assess performance","Provide feedback","Present the content","Gain learners’ attention"],3],
+["In mastery learning, what should a teacher provide when formative assessment identifies learning difficulties?",["Unrelated enrichment activities","Corrective instruction addressing the difficulties","Immediate progression to the next topic","A final grade without further instruction"],1],
+["According to Piaget, abstract thinking and reasoning about hypothetical situations develop during the:",["Formal operational stage","Sensorimotor stage","Preoperational stage","Concrete operational stage"],0],
+["Vygotsky’s Zone of Proximal Development refers to the gap between:",["Physical growth and emotional growth","Short-term memory and long-term memory","What a learner can do independently and with knowledgeable help","Intelligence and academic achievement"],2]],
+3:[["In the Atkinson–Shiffrin model, the correct sequence of memory stores is:",["Short-term → Sensory → Long-term","Sensory → Short-term → Long-term","Long-term → Sensory → Short-term","Sensory → Long-term → Short-term"],1],
+["Grouping related pieces of information into meaningful units is called:",["Retrieval","Recognition","Forgetting","Chunking"],3],
+["Which component of working memory directs attention and coordinates the other components?",["Central executive","Phonological loop","Visuo-spatial sketchpad","Episodic buffer"],0],
+["Which working-memory component maintains and rehearses verbal and auditory information?",["Central executive","Episodic buffer","Phonological loop","Visuo-spatial sketchpad"],2],
+["Mentally rotating an object or imagining a route mainly involves the:",["Phonological loop","Visuo-spatial sketchpad","Sensory register","Episodic buffer"],1],
+["Knowing how to perform a familiar skill, such as riding a bicycle, mainly involves:",["Sensory memory","Semantic memory","Episodic memory","Procedural memory"],3],
+["Memory for facts and general knowledge, such as knowing that Paris is the capital of France, is called:",["Semantic memory","Procedural memory","Sensory memory","Episodic memory"],0],
+["According to the Levels of Processing theory, which activity generally produces better recall?",["Looking only at a word’s typeface","Noticing only a word’s sound","Considering a word’s meaning and its associations","Counting the letters in a word"],2],
+["The cognitive load caused by the inherent complexity of the learning material is called:",["Extraneous cognitive load","Intrinsic cognitive load","Germane cognitive load","Mental effort"],1],
+["Which action helps reduce extraneous cognitive load in learning materials?",["Adding unrelated decorative images","Using unnecessarily complicated explanations","Frequently changing the presentation structure","Removing irrelevant information and media"],3]],
+4:[["The affective domain of Bloom’s taxonomy mainly concerns:",["Physical coordination","Feelings, values, and attitudes","Numerical calculations","Motor skills"],1],
+["Which is the highest level of the revised Bloom’s cognitive taxonomy?",["Apply","Analyze","Evaluate","Create"],3],
+["The two main processes of metacognition are:",["Knowledge of cognition and regulation of cognition","Imitation and reinforcement","Sensation and movement","Encoding and storage"],0],
+["Which critical-thinking skill involves drawing conclusions from collected information?",["Observation","Communication","Inference","Memorization"],2],
+["Which activity directly supports the development of reflective thinking?",["Keeping a reflective diary about learning experiences","Avoiding feedback about mistakes","Copying answers without reviewing them","Repeating information without considering its meaning"],0],
+["Knowledge of terminology and specific details is classified as:",["Conceptual knowledge","Procedural knowledge","Factual knowledge","Metacognitive knowledge"],2],
+["The sudden “Eureka!” moment in the creative-thinking process occurs during:",["Incubation","Insight","Evaluation","Elaboration"],1],
+["Which activity best represents problem-based learning?",["Memorizing a teacher’s solution without discussion","Copying textbook definitions","Listening while the teacher completes every task","Investigating a complex problem and researching possible solutions"],3],
+["A node-link diagram showing meaningful relationships among concepts is called a:",["Frequency table","Concept map","Pie chart","Timeline"],1],
+["In a concept map, cross-links are used to:",["Connect concepts in different areas of the map","Replace every concept with the main topic","Remove relationships between concepts","Show only the order in which concepts were learned"],0]],
+5:[["According to drive-reduction theory, a behaviour is strengthened when it:",["Increases an unmet biological need","Prevents the satisfaction of needs","Reduces a drive such as hunger or thirst","Produces no change in the drive"],2],
+["The inverted-U relationship in the Yerkes–Dodson law suggests that performance is generally best at:",["No arousal","An optimal, intermediate level of arousal","The highest possible arousal","Arousal levels unrelated to the task"],1],
+["Believing “If I achieve my targets, I will receive a promotion” represents which component of expectancy theory?",["Valence","Expectancy","Autonomy","Instrumentality"],3],
+["In expectancy theory, the personal value attached to a reward is called:",["Valence","Instrumentality","Expectancy","Competence"],0],
+["According to goal-setting theory, effective goals should be:",["Vague and easy to ignore","Impossible to achieve","Specific, challenging, and attainable","Established without feedback or commitment"],2],
+["Which needs form the lowest level of Maslow’s hierarchy?",["Esteem needs","Physiological needs","Safety needs","Self-actualization needs"],1],
+["Realizing one’s full potential is associated with which level of Maslow’s hierarchy?",["Safety","Esteem","Physiological needs","Self-actualization"],3],
+["Which three basic psychological needs are emphasized in self-determination theory?",["Autonomy, competence, and relatedness","Wealth, status, and competition","Hunger, thirst, and sleep","Power, punishment, and approval"],0],
+["Studying mainly to avoid feelings of shame or guilt is an example of:",["Amotivation","Intrinsic motivation","Introjected regulation","Identified regulation"],2],
+["Achievement motivation involves which two opposing tendencies?",["Seeking rewards and avoiding all effort","Striving for success and avoiding failure","Seeking friendship and avoiding independence","Increasing arousal and avoiding feedback"],1]],
+6:[["Who developed the psychological theory of emotional intelligence in 1990?",["Daniel Goleman and Clark Hull","Peter Salovey and John Mayer","Abraham Maslow and Victor Vroom","Jean Piaget and Lev Vygotsky"],1],
+["The ability to put one’s feelings into words is called:",["Emotional contagion","Surface acting","Emotional labor","Emotional literacy"],3],
+["“Reasoning with emotions” involves:",["Using emotions to support thinking and cognitive activity","Ignoring emotions during every decision","Allowing feelings to replace all evidence","Hiding emotions from everyone"],0],
+["Viewing a stressful situation as a manageable challenge rather than a threat is an example of:",["Emotional contagion","Surface acting","Cognitive reframing","Emotional suppression"],2],
+["Inspiring a team, guiding others, and resolving disagreements are examples of:",["Self-awareness","Relationship management","Emotional literacy","Sensory processing"],1],
+["Managing feelings and emotional expressions according to workplace rules is called:",["Emotional labor","Emotional creativity","Emotional contagion","Intrinsic motivation"],0],
+["A service worker displays a smile while making no attempt to change their actual irritation. This is:",["Deep acting","Emotional creativity","Cognitive reframing","Surface acting"],3],
+["Deep acting involves:",["Changing only facial expressions","Ignoring workplace expectations","Trying to genuinely feel the emotions one is expected to display","Copying another person’s emotions automatically"],2],
+["When one person’s emotions lead others to experience similar emotions, this is called:",["Emotional contagion","Emotional literacy","Emotional labor","Self-awareness"],0],
+["Emotional creativity is the ability to:",["Experience only pleasant emotions","Generate original, effective, and adaptive emotional responses","Suppress every negative feeling","Display emotions without understanding them"],1]],
+7:[["Which sequence correctly represents Kolb’s experiential learning cycle?",["Reflection → Testing → Experience → Abstract concepts","Abstract concepts → Experience → Testing → Reflection","Concrete experience → Reflection → Abstract concepts → Testing","Testing → Abstract concepts → Reflection → Experience"],2],
+["Situated learning emphasizes learning through participation in:",["Communities of practice","Isolated memorization only","Activities unrelated to everyday life","Fixed, unchanging routines without interaction"],0],
+["Which instructional approach mainly involves teacher-led explanations and demonstrations?",["Independent instruction","Indirect instruction","Interactive instruction","Direct instruction"],3],
+["In Merrill’s principles of instruction, using learners’ existing knowledge as a foundation for new learning is called:",["Demonstration","Activation","Application","Integration"],1],
+["Identifying learners’ characteristics, existing knowledge, and learning constraints belongs to which ADDIE phase?",["Analysis","Design","Development","Evaluation"],0],
+["In the ADDIE model, formative evaluation takes place:",["Only after the entire course ends","Only before instruction begins","Throughout the stages of the process","Only during implementation"],2],
+["Which type of advance organizer is particularly useful when upcoming learning material is unfamiliar?",["Comparative organizer","Expository organizer","Summative assessment","Performance checklist"],1],
+["According to Gagné, before teaching a new learning outcome, an instructor should identify learners’ necessary:",["Preferred rewards","Social status","Competitive ranking","Prerequisite knowledge and skills"],3],
+["Which sequence correctly represents Bruner’s three modes of representation?",["Symbolic → Iconic → Enactive","Iconic → Symbolic → Enactive","Enactive → Iconic → Symbolic","Enactive → Symbolic → Iconic"],2],
+["Providing structured support so a learner can concentrate on a difficult skill is called:",["Scaffolding","Rote repetition","Summative assessment","Reinforcement"],0]],
+8:[["Which pedagogical approach helps students connect ideas across different subjects and apply them to real-world situations?",["Integrative approach","Collaborative approach","Reflective approach","Inquiry-based approach"],0],
+["Reflective pedagogy primarily encourages teachers to:",["Repeat lessons without making changes","Examine their teaching practices and improve future lessons","Focus exclusively on examination marks","Avoid feedback from students"],1],
+["For experiences to support experiential learning effectively, they should be accompanied by:",["Memorization without understanding","Passive observation alone","Reflection, critical analysis, and synthesis","Avoidance of mistakes and uncertainty"],2],
+["Critical pedagogy encourages students to question and examine:",["Only their physical abilities","Only factual recall","The classification of academic subjects","Power structures, inequalities, and established social beliefs"],3],
+["Presenting corresponding words and pictures close together follows which multimedia principle?",["Temporal contiguity","Spatial contiguity","Modality","Personalization"],1],
+["Blended learning combines:",["Only recorded lectures and online tests","Only textbooks and classroom lectures","Online learning opportunities and face-to-face classroom methods","Independent study without teacher interaction"],2],
+["Which arrangement best represents a flipped classroom?",["Students study introductory material before class and use class time for discussion and application","Teachers introduce all content through classroom lectures and assign all application work afterward","Students complete every activity alone without discussion","Classroom activities are replaced entirely by examinations"],0],
+["Transformative learning primarily involves:",["Increasing the speed of memorization","Repeating familiar routines","Learning facts without examining beliefs","Changing one’s frame of reference through critical reflection"],3],
+["According to Mezirow, transformative learning commonly begins with:",["Reintegration of a new perspective","A disorienting dilemma","Mastery of a new role","Completion of an action plan"],1],
+["Contemplative pedagogy emphasizes:",["Competition and external rewards","Memorization without personal involvement","Mindfulness, introspection, and awareness of one’s learning experience","Avoiding emotions and personal meaning"],2]],
+9:[["Discussion forums and online group projects mainly support which dimension of learning?",["Isolated memorization","Social learning","Passive observation","Mechanical repetition"],1],
+["Teaching a procedure through a fixed sequence of steps, where one step leads to the next, is called:",["Discrimination","Generalization","Association","Chaining"],3],
+["According to Knowles’ self-concept assumption, adult learners increasingly prefer:",["Self-direction and autonomy","Complete dependence on the instructor","Learning without making choices","Avoiding responsibility for learning"],0],
+["According to adult learning theory, learning content should primarily be:",["Unrelated to everyday responsibilities","Focused only on memorizing facts","Problem-centered and applicable to real-life situations","Useful only in the distant future"],2],
+["A platform that adjusts content to a learner’s individual needs uses:",["Fixed-sequence instruction only","Standardized content without variation","Passive presentation","Adaptive learning"],3],
+["Short, focused learning modules covering specific topics are known as:",["Microlearning","Massive open online courses","Blended learning","Webinars"],0],
+["Using points, badges, levels, and leaderboards in an educational course is called:",["Storytelling","Chaining","Gamification","Summative assessment"],2],
+["A major educational advantage of simulations is that they allow learners to:",["Avoid applying their knowledge","Practise realistic tasks in a risk-free environment","Learn without making decisions","Replace all practice with memorization"],1],
+["Distributing learning sessions over time to improve long-term retention uses the:",["Modality principle","Contiguity principle","Prototype effect","Spacing effect"],3],
+["Which design choice improves accessibility in e-learning?",["Providing closed captions and alternative text for images","Presenting all information through audio alone","Using colour as the only way to communicate meaning","Removing controls for adjusting media playback"],0]],
+10:[["Which activity demonstrates self-regulation in learning?",["Waiting for others to organize every task","Planning study time and monitoring progress","Avoiding difficult material","Studying without any goals"],1],
+["Teachers’ expectations can influence students’ learning opportunities, motivation, and:",["Biological age","Family background","Learning outcomes","Physical growth"],2],
+["The main purpose of formative assessment is to:",["Improve ongoing teaching and learning","Award final certificates only","Rank students after graduation","Replace classroom instruction"],0],
+["An examination used at the end of a course to judge overall achievement is primarily:",["Diagnostic assessment","Self-assessment","Formative assessment","Summative assessment"],3],
+["An assessment measures what it is intended to measure when it has:",["Transparency","Validity","Popularity","Flexibility"],1],
+["Consistency in assessment results is called:",["Alignment","Validity","Reliability","Creativity"],2],
+["Making assessment criteria and expectations clear beforehand supports:",["Transparency","Competition","Memorization","Standardization of teaching methods"],0],
+["Assessment alignment means ensuring that assessment tasks match:",["Students’ preferred examination dates","The length of the textbook","Other schools’ grading patterns","Intended learning outcomes and learning opportunities"],3],
+["A student judges their own work against the expected criteria. This is:",["Summative certification","External examination","Self-assessment","Teacher appraisal"],2],
+["Feedforward primarily provides guidance about:",["Recording previous grades","Improving performance on upcoming tasks","Comparing students’ personalities","Calculating attendance"],1]],
+11:[["Which sequence correctly represents the processes of observational learning?",["Motivation → Reproduction → Attention → Retention","Retention → Motivation → Attention → Reproduction","Attention → Retention → Reproduction → Motivation","Reproduction → Attention → Motivation → Retention"],2],
+["Reciprocal determinism involves mutual influences among:",["Intelligence, age, and physical growth","Rewards, examinations, and grades","Memory, attention, and language only","Personal factors, behaviour, and environment"],3],
+["Self-efficacy refers to a person’s belief in their ability to:",["Perform a particular task successfully","Control every external event","Avoid all mistakes","Gain everyone’s approval"],0],
+["Which is considered the strongest source of self-efficacy?",["Comparing oneself unfavourably with others","Successfully performing a task","Avoiding challenging activities","Receiving rewards without effort"],1],
+["A fictional character demonstrating behaviour in a film is an example of a:",["Live model","Verbal instructional model","Symbolic model","Biological model"],2],
+["Giving up because one believes that personal actions cannot influence outcomes is associated with:",["Learned helplessness","High self-efficacy","Self-directed learning","Mastery motivation"],0],
+["In the Johari Window, information known to others but unknown to oneself belongs to the:",["Open area","Hidden area","Unknown area","Blind spot"],3],
+["Sharing previously concealed thoughts and feelings mainly reduces which Johari Window area?",["Open area","Hidden area","Blind spot","All four areas equally"],1],
+["Explaining why another person behaved in a particular way involves:",["Attribution","Rehearsal","Motor reproduction","Sensory registration"],0],
+["A computer-generated character that demonstrates tasks or guides learners is called a:",["Social schema","Personality inventory","Pedagogical agent","Reinforcement schedule"],2]],
+12:[["Sustainable development means meeting present needs without:",["Considering economic development","Compromising future generations’ ability to meet their needs","Allowing changes in society","Using any natural resources"],1],
+["The three interconnected pillars of sustainability are:",["Education, technology, and competition","Industry, agriculture, and transport","Knowledge, memory, and intelligence","Society, economy, and environment"],3],
+["Which Sustainable Development Goal focuses on inclusive, equitable quality education and lifelong learning?",["SDG 4","SDG 8","SDG 12","SDG 15"],0],
+["The three interrelated learning dimensions emphasized in sustainability education are:",["Physical, financial, and technological","Verbal, numerical, and spatial","Cognitive, social-emotional, and behavioural","Individual, competitive, and commercial"],2],
+["Recognizing relationships and analysing interconnected sustainability problems demonstrates:",["Memorization","Systems thinking competency","Motor coordination","Emotional suppression"],1],
+["Understanding and evaluating possible, probable, and desirable futures requires:",["Anticipatory competency","Self-awareness competency","Linguistic competency","Manual competency"],0],
+["Reflecting on the values and norms underlying actions is central to:",["Strategic competency","Collaboration competency","Anticipatory competency","Normative competency"],3],
+["Collectively developing and implementing innovative sustainability actions demonstrates:",["Sensory processing","Rote learning","Strategic competency","Procedural repetition"],2],
+["A whole-institution approach to sustainability integrates sustainability into:",["Curriculum, governance, operations, and community relationships","Science lessons alone","Occasional awareness posters only","Examination questions alone"],0],
+["The precautionary principle supports taking preventive action when:",["Every possible consequence is already certain","Economic profit is guaranteed","Environmental concerns can be ignored","Serious harm is possible despite incomplete scientific knowledge"],3]]};
+const WX=Object.fromEntries(Object.entries(XR).map(([n,a])=>['x'+n,a.map(([q,o,k])=>[q,o,k,`Extra questions from PPT, week ${n}.`])]));
+const WK={[LG]:WL,[PS]:{...W,...WX},[MH]:WMH};let CS=PS;
+const app=document.getElementById('app'),TOTAL=180*60;
+let Q,ans,cur,end,iv,sub,name,taken,lv=false;
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=s=>{s=Math.max(0,s);const h=s/3600|0,m=(s%3600)/60|0,x=s%60;return `${h}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}`};
+function picker(sn){
+ CS=sn;const WW=WK[sn];
+ app.innerHTML=`<h1>${sn}</h1><p class="sub">Select the weeks to include. Questions from the chosen weeks are mixed and shuffled. 180 minutes.</p><h2 style="font-size:1.1rem;margin:20px 0 10px">Assignment questions</h2><div class="grid">`+Object.keys(WW).map(n=>`${n==='x1'?'</div><h2 style="font-size:1.1rem;margin:24px 0 10px">Extra questions from PPT</h2><div class="grid">':''}<label class="card"><input type="checkbox" value="${n}" ${WW[n].length?'':'disabled'}> <b style="display:inline">Week ${n[0]==='x'?n.slice(1)+' (extra)':n}</b><br><span>${WW[n].length?`${WW[n].length} question${WW[n].length>1?'s':''}`:'Coming soon'}</span></label>`).join('')+`</div><div class="row"><button class="btn ghost" id="a">Select all</button><button class="btn ghost" id="c">Clear</button><button class="btn ghost" id="b">Back</button><button class="btn" id="g" disabled>Start test</button></div><p class="mu" id="m"></p>`;
+ const cb=[...app.querySelectorAll('input')],g=document.getElementById('g');
+ const up=()=>{const k=cb.filter(x=>x.checked);g.disabled=!k.length;document.getElementById('m').textContent=k.length?`${k.length} week(s) · ${k.reduce((t,x)=>t+WW[x.value].length,0)} questions selected`:''};
+ cb.forEach(x=>x.onchange=up);
+ document.getElementById('a').onclick=()=>{cb.forEach(x=>x.checked=!x.disabled);up()};
+ document.getElementById('c').onclick=()=>{cb.forEach(x=>x.checked=false);up()};
+ document.getElementById('b').onclick=home;
+ g.onclick=()=>{const k=cb.filter(x=>x.checked).map(x=>x.value);SRC=k.flatMap(n=>WW[n]);start(`${sn} (Week ${k.map(n=>n[0]==='x'?n.slice(1)+' extra':n).join(', ')})`)};
+}
+function home(){
+ clearInterval(iv);
+ app.innerHTML=`<h1>MCQ Timed Test</h1><p class="sub">Choose a subject. You get 180 minutes. Question order is shuffled every time, and you can submit any time.</p><div class="grid">`+
+ Object.keys(D).map(k=>`<button class="card" data-s="${k}"><b>${k}</b><span>${D[k].length} questions · 180 min</span></button>`).join('')+`<button class="card" data-s="${LG}"><b>${LG}</b><span>12 weeks · pick any weeks · 180 min</span></button><button class="card" data-s="${PS}"><b>${PS}</b><span>12 weeks · pick any weeks · 180 min</span></button><button class="card" data-s="${MH}"><b>${MH}</b><span>12 weeks · pick any weeks · 180 min</span></button></div>`;
+ app.querySelectorAll('.card').forEach(b=>b.onclick=()=>WK[b.dataset.s]?picker(b.dataset.s):start(b.dataset.s));
+}
+function start(s){
+ name=s;
+ Q=sh(D[s]||SRC).map(([q,o,a,e])=>{const m=sh(o.map((t,i)=>[t,i]));return{q,o:m.map(x=>x[0]),a:m.findIndex(x=>x[1]===a),e}});
+ ans=Q.map(()=>null);cur=0;sub=false;end=Date.now()+TOTAL*1000;
+ clearInterval(iv);iv=setInterval(tick,500);render();
+}
+function left(){return Math.round((end-Date.now())/1000)}
+function tick(){
+ const l=left(),t=document.getElementById('t');
+ if(l<=0){submit();return}
+ if(t){t.textContent=fmt(l);t.classList.toggle('low',l<300)}
+}
+function render(){
+ const q=Q[cur],all=ans.every(x=>x!==null),n=ans.filter(x=>x!==null).length;
+ app.innerHTML=`<div class="hd"><div><button class="btn ghost" id="bk" style="padding:4px 12px;margin-bottom:6px">← Back</button><div><b>${name}</b></div><div class="mu">${n} of ${Q.length} answered</div></div><div class="tm" id="t">${fmt(left())}</div></div>${lv?`<div class="sb"><b>Leave this test?</b><div class="mu">Your answers so far will be lost and the timer will stop.</div><div class="row"><button class="btn" id="ly">Leave</button><button class="btn ghost" id="ls">Stay</button></div></div>`:''}
+ <div class="mu" style="margin-top:16px">Question ${cur+1} of ${Q.length}</div><div class="q">${q.q}</div>`+
+ q.o.map((t,k)=>`<button class="opt${ans[cur]===k?' sel':''}" data-k="${k}">${'ABCD'[k]}. ${t}</button>`).join('')+
+ `<div class="row"><button class="btn ghost" id="p" ${cur===0?'disabled':''}>Previous</button><button class="btn ghost" id="n" ${cur===Q.length-1?'disabled':''}>Next</button></div>
+ <div class="pal">${Q.map((_,i)=>`<button data-i="${i}" class="${ans[i]!==null?'done':''}${i===cur?' cur':''}">${i+1}</button>`).join('')}</div>`+
+ `<div class="sb"><b>${all?'All questions answered.':`${Q.length-n} unanswered.`}</b><div class="mu">You can still change answers before submitting.</div><div class="row"><button class="btn" id="s">Submit test</button></div></div>`;
+ app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[cur]=+b.dataset.k;render()});
+ app.querySelectorAll('.pal button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;render()});
+ document.getElementById('p').onclick=()=>{cur--;render()};
+ document.getElementById('n').onclick=()=>{cur++;render()};
+ const s=document.getElementById('s');if(s)s.onclick=()=>submit();
+ document.getElementById('bk').onclick=()=>{lv=true;render()};
+ const ly=document.getElementById('ly');if(ly){ly.onclick=()=>{clearInterval(iv);lv=false;D[name]?home():picker(CS)};document.getElementById('ls').onclick=()=>{lv=false;render()}}
+}
+function submit(){
+ if(sub)return;sub=true;clearInterval(iv);taken=TOTAL-Math.max(0,left());
+ const sc=Q.filter((q,i)=>ans[i]===q.a).length,p=Math.round(sc/Q.length*100),skipped=ans.filter(x=>x===null).length;
+ app.innerHTML=`<h1>Results</h1><div class="mu">${name}</div><div class="big">${sc} / ${Q.length}</div>
+ <p class="sub">${p}% · Time used ${fmt(taken)}</p><div class="row" style="margin:0 0 12px"><span class="tag ok">${sc} Correct</span><span class="tag no">${Q.length-sc-skipped} Wrong</span><span class="tag skip">${skipped} Not attempted</span></div>
+ <div class="row"><button class="btn" id="r">Retake (new order)</button><button class="btn ghost" id="h">All subjects</button></div>
+ <h2 style="margin-top:28px;font-size:1.1rem">Review</h2>`+
+ Q.map((q,i)=>{const a=ans[i],ok=a===q.a,st=a===null?'skip':ok?'ok':'no',lb={skip:'Not attempted',ok:'Correct',no:'Wrong'}[st];return `<div class="rv ${st}"><span class="tag ${st}">${lb}</span><b>${i+1}. ${q.q}</b><br><small>Your answer: ${a===null?'Not answered':q.o[a]}</small>${ok?'':`<br><small class="g">Correct: ${q.o[q.a]}</small>`}<br><small>${q.e}</small></div>`}).join('');
+ document.getElementById('r').onclick=()=>start(name);document.getElementById('h').onclick=home;
+ window.scrollTo(0,0);
+}
+home();
+</script></body></html>
